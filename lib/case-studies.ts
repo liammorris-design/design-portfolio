@@ -11,6 +11,8 @@ export type CaseStudyHeroContent = {
   subHeading: string;
   tags: readonly string[];
   heroImage: string;
+  /** Optional video sources; when defined, video is shown with heroImage as poster */
+  heroVideo?: readonly { src: string; type: string }[];
 };
 
 export type CaseStudyOverviewProjectDetails = {
@@ -102,6 +104,20 @@ const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
     tags: ["Fintech", "Mobile App", "B2C", "Money Exchange"],
     heroImage: "/FamilyPay/Hero.png",
   },
+  "project-3": {
+    logo: "AN POST MONEY",
+    logoDefaultSvg: "/anpost-money-logo.png",
+    logoLightSvg: "/anpost-money-logo.png",
+    heading: "Retail Banking Mobile App",
+    subHeading:
+      "Scaled a retail banking app with open-banking and automated savings. Partnered with cross-functional squads to drive 4.5-star growth.",
+    tags: ["Consumer", "Mobile App", "Fintech B2C"],
+    heroImage: "/anpost-thumbnail.png",
+    heroVideo: [
+      { src: "/anpost-hero.webm", type: "video/webm" },
+      { src: "/anpost-hero.mp4", type: "video/mp4" },
+    ],
+  },
 };
 
 const OVERVIEW_CONTENT: Partial<Record<ProjectSlug, CaseStudyOverviewContent>> = {
@@ -166,12 +182,12 @@ const CHALLENGE_CONTENT: Partial<
   Record<ProjectSlug, CaseStudyChallengeContent>
 > = {
   "lloyds-bank-mvp": {
-    heading: "High-friction workflows and costly trade reversals.",
+    heading: "Fighting back against Fintech agility.",
     problem:
-      "Lloyds was losing market share to fintechs offering smoother, digital-first FX experiences. SME customers were forced to navigate fragmented legacy portals with poor UX, causing many to resort to manual phone-in trades. This disconnected workflow created friction around pricing and execution, whilst the bank's reliance on manual bookings led to slow fulfilment and expensive trade reversals.",
+      "Lloyds was losing market share to fintechs offering digital-first FX. SME customers faced fragmented legacy portals and poor UX, driving many to manual phone-in trades. Reliance on manual bookings led to slow fulfilment and costly trade reversals.",
     objective: {
       intro:
-        "Launch a high-performance FX trading platform MVP within 6 months to:",
+        "Launch a high-performance FX trading platform MVP within 6 months to protect market share and streamline SME FX. Objectives included:",
       items: [
         "Protect market share by competing with digital brokers.",
         "Remove friction for SMEs making time-sensitive trades.",

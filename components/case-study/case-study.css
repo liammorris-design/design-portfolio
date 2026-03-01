@@ -286,6 +286,7 @@
     flex: 0 0 auto;
     max-width: 24rem;
     min-width: 0;
+    padding-top: 2rem; /* align with Problem panel's py-8 first line */
   }
 
   [data-case-study] .cs-challenge-panels {

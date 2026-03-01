@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import type { CaseStudyHeroContent } from "@/lib/case-studies";
 import { CaseStudyLogo } from "./case-study-logo";
 import { Button } from "@/components/ui/button";
+import { HeroVideoPlayer } from "./hero-video-player";
 
 type HeroSectionProps = {
   content: CaseStudyHeroContent;
@@ -41,15 +42,22 @@ export function HeroSection({ content }: HeroSectionProps) {
           ))}
         </div>
 
-        <div className="cs-media">
-          <Image
-            src={content.heroImage}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="(max-width: 1080px) 100vw, 1080px"
-            priority
-          />
+        <div className="cs-media relative">
+          {content.heroVideo ? (
+            <HeroVideoPlayer
+              sources={content.heroVideo}
+              poster={content.heroImage}
+            />
+          ) : (
+            <Image
+              src={content.heroImage}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="(max-width: 1080px) 100vw, 1080px"
+              priority
+            />
+          )}
         </div>
         </div>
       </div>

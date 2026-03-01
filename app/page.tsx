@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Image as ImageIcon, Blocks, User, ExternalLink, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollToSectionLink } from "@/components/scroll-to-section-link";
 import { CTASection } from "@/components/sections/cta-section";
 import { Footer } from "@/components/footer";
 import { WorkCarousel } from "@/components/work-carousel";
@@ -67,8 +68,7 @@ export default function Home() {
 
             {/* Subheader: 20px, 36px line height, two lines */}
             <p className="hero-reveal hero-reveal-delay-4 max-w-2xl text-[20px] leading-[36px] text-muted-foreground">
-              I bridge product strategy and production-ready design, helping teams
-              launch world-class software at record speed.
+              I bridge product strategy and production-ready design, helping high-growth squads navigate ambiguity and ship complex fintech at scale.
             </p>
 
             {/* CTAs - sentence case, 16px font */}
@@ -95,7 +95,7 @@ export default function Home() {
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="text-base" asChild>
-                <a href="#work">Recent work</a>
+                <ScrollToSectionLink href="#work">Recent work</ScrollToSectionLink>
               </Button>
             </div>
           </div>
