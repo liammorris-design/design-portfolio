@@ -70,7 +70,7 @@ export function FAQsSection() {
                 value={`item-${i}`}
                 className="border-border"
               >
-                <AccordionTrigger className="py-5 text-center text-foreground hover:no-underline hover:text-foreground/80">
+                <AccordionTrigger className="py-5 text-center text-foreground font-semibold hover:no-underline hover:text-foreground/80">
                   <span className="flex flex-wrap items-center gap-2">
                     {question}
                     {isNew && (

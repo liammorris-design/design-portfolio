@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 const SERVICES = [
   {
     icon: Paintbrush,
-    title: "UX/UI Design",
+    title: "System Design (UX/UI)",
     description:
       "Creating easy-to-use interfaces for complex software and apps.",
   },
@@ -25,9 +25,9 @@ const SERVICES = [
   },
   {
     icon: Users,
-    title: "User Research",
+    title: "Product Discovery",
     description:
-      "Talking to real users to make sure we're building the right features.",
+      "Talking to stakeholders and real users to make sure we're building the right features.",
   },
   {
     icon: Map,
@@ -45,10 +45,13 @@ const SERVICES = [
     icon: Wrench,
     title: "Design-to-Code",
     description:
-      "Turning static designs into clean, production-ready code for developers.",
+      "Bridging the gap between Figma and production-ready code to accelerate delivery in high-velocity agile squads.",
     isNew: true,
   },
 ];
+
+/** Set to true when service tile images are ready to show. */
+const SHOW_SERVICE_IMAGES = false;
 
 export function ServicesSection() {
   return (
@@ -69,7 +72,7 @@ export function ServicesSection() {
             <Card
               key={title}
               style={{ "--card-z": index } as React.CSSProperties}
-              className="relative z-[var(--card-z)] rounded-none border-0 bg-neutral-50 pb-0 hover:z-10 focus-within:z-10 dark:bg-transparent"
+              className="relative z-[var(--card-z)] rounded-none border-0 bg-neutral-50 pb-6 hover:z-10 focus-within:z-10 dark:bg-transparent"
             >
               {isNew && (
                 <Badge className="absolute right-6 top-6 font-mono bg-emerald-100 text-emerald-900 hover:bg-emerald-100 hover:text-emerald-900 dark:bg-[#003E30] dark:text-[#bef264] dark:hover:bg-[#003E30] dark:hover:text-[#bef264]">
@@ -85,11 +88,13 @@ export function ServicesSection() {
                   {description}
                 </CardDescription>
               </CardHeader>
+              {SHOW_SERVICE_IMAGES && (
               <CardContent className="pb-0">
-                <div className="flex aspect-[16/10] items-center justify-center rounded-t-lg rounded-b-none bg-muted">
+                <div className="flex aspect-[16/10] items-center justify-center rounded-[var(--radius-card)] bg-muted">
                   <Monitor className="size-10 text-muted-foreground dark:text-white" aria-hidden />
                 </div>
               </CardContent>
+              )}
             </Card>
           ))}
         </div>

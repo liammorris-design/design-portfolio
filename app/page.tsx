@@ -33,7 +33,7 @@ export default function Home() {
       {/* Hero – grid cropped to section-frame strokes */}
       <div
         id="hero"
-        className="flex min-h-0 flex-1 flex-col"
+        className="flex min-h-[75vh] flex-1 flex-col"
       >
         <div className="section-frame hero-with-grid relative flex flex-1 flex-col items-center justify-center px-20 py-30">
           <div className="flex w-full max-w-2xl flex-col items-center gap-8 text-center">
@@ -122,7 +122,7 @@ export default function Home() {
               {[...RIBBON_ITEMS, ...RIBBON_ITEMS].map((item, idx) => (
                 <div
                   key={`ribbon-${idx}-${item.id}`}
-                  className="flex h-44 w-[280px] shrink-0 items-center justify-center overflow-hidden rounded-none bg-muted md:h-52 md:w-[340px]"
+                  className="flex h-44 w-[280px] shrink-0 items-center justify-center overflow-hidden rounded-[var(--radius-card)] bg-muted md:h-52 md:w-[340px]"
                   aria-hidden
                 >
                   <ImageIcon
@@ -196,33 +196,25 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_1.5fr] md:gap-x-12 md:gap-y-20">
-            {/* Left: portrait placeholder */}
-            <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-none border border-border bg-muted md:max-w-none">
-              <Image
-                src="/image-d6122e50-f1e0-438c-b34d-17f85bec7112.png"
-                alt=""
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 400px"
+            {/* Left: portrait */}
+            <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-[var(--radius-card)] border border-border bg-muted md:max-w-none">
+              <img
+                src="/profile-pic.jpeg"
+                alt="Liam Morris"
+                className="size-full object-cover"
               />
             </div>
 
             {/* Right: copy + links */}
             <div className="flex flex-col">
               <p className="mb-4 text-muted-foreground leading-relaxed">
-                I&apos;m a Senior Product Designer with 12 years in the London
-                tech scene, specialising in 0→1 product development for the past
-                five. My approach is shaped by a unique background in commercial
-                sales and business transformation, allowing me to design with a
-                founder&apos;s focus on discovery, scope, and shipping fast.
+                I&apos;m a Senior Product Designer with 12 years of experience in the London tech scene, specialising in Fintech and Treasury infrastructure. I bridge the gap between product strategy and production-ready UI, helping teams launch world-class software within agile, cross-functional squads.
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
-                Having delivered high-stakes UX/UI for Tier 1 enterprise banks
-                and early-stage startups alike, I am equally effective as a solo
-                lead or within a team. I have recently evolved my process to
-                include an AI-assisted coding workflow, allowing me to bridge
-                the gap between Figma and the front-end by delivering functional,
-                production-ready UI in days rather than weeks.
+                Having delivered high-stakes UX/UI for Tier 1 enterprise banks and early-stage startups alike, I thrive in the ambiguity of 0→1 development. My approach combines a founder&apos;s focus on speed with a deep understanding of complex money movement and compliance, ensuring every design is secure, scalable, and technically feasible.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Specialising in Treasury and Money Movement infrastructure, I have a proven track record of designing secure, compliant B2B financial flows. From architecting banking engines for Tier 1 institutions to building lean fintech prototypes, I thrive in squad-based environments where I lead the full product lifecycle from discovery to ship.
               </p>
             </div>
           </div>

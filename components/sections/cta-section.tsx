@@ -84,7 +84,7 @@ export function CTASection() {
           </div>
 
           {/* Right: Enquiry form or confirmation */}
-          <div className="flex w-full flex-col gap-6 overflow-hidden rounded-none border border-zinc-200 bg-white px-6 py-6 text-zinc-900 dark:border-zinc-600/60 dark:bg-zinc-900 dark:text-white md:px-8 md:py-8">
+          <div className="flex w-full flex-col gap-6 overflow-hidden rounded-[var(--radius-card)] border border-zinc-200 bg-white px-6 py-6 text-zinc-900 dark:border-zinc-600/60 dark:bg-zinc-900 dark:text-white md:px-8 md:py-8">
             {isSubmitted ? (
               <div className="flex flex-col items-center gap-4 py-8 text-center">
                 <CheckCircle2 className="size-12 text-emerald-600 dark:text-emerald-500" aria-hidden />

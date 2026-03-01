@@ -50,6 +50,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --radius-card: 0.75rem; /* 12px – image containers, cards, tiles */
   /* Typography: New York tracking */
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.02em;
@@ -81,6 +82,7 @@
 
 :root {
   --hero-grid: hsl(240 5% 88%);
+  --radius-card: 0.75rem; /* 12px – image containers, cards, tiles */
   /* Light-mode background: #FAFAFA */
   --background: hsl(0 0% 98%);
   --foreground: hsl(240 10% 3.9%);
@@ -170,12 +172,21 @@
   border-right: 1px solid var(--border-subtle);
 }
 
-/* Hero grid background – centred, strongest in the middle and fading to 0% at the edges */
+/* Hero grid container: fill hero height and clip so grid is only cropped by section-frame strokes */
+.hero-with-grid {
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Hero grid background: full-bleed grid + radial fade (center 75% opacity, edges 0%).
+   Grid fills entire hero; responsive via background-size; radial works in light and dark mode. */
 .hero-with-grid::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
+  /* Grid pattern: 32px cells, fills any viewport; background-size makes it responsive */
   background-image: repeating-linear-gradient(
       0deg,
       var(--hero-grid) 0,
@@ -190,9 +201,26 @@
       transparent 1px,
       transparent 32px
     );
-  /* Radial mask: fully opaque at centre, fading out evenly to all sides */
-  mask-image: radial-gradient(circle at 50% 50%, black 0%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, black 40%, transparent 100%);
+  background-size: 32px 32px;
+  background-position: 0 0;
+  background-repeat: repeat;
+  /* Radial fade: centre 75% opacity, outsides 0%; farthest-side so fade reaches top, bottom, left, right */
+  mask-image: radial-gradient(
+    circle farthest-side at 50% 50%,
+    rgba(0, 0, 0, 0.75) 0%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle farthest-side at 50% 50%,
+    rgba(0, 0, 0, 0.75) 0%,
+    transparent 100%
+  );
+  mask-size: 100% 100%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
   pointer-events: none;
 }
 
@@ -371,6 +399,8 @@
 /* Services grid: single 1px stroke between tiles (each line drawn once) */
 .services-tile-grid {
   border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
 }
 .services-tile-grid > * {
   border-right: 1px solid var(--border);

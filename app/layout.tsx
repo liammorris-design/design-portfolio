@@ -16,8 +16,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cursor Design Portfolio",
+  title: "Liam Morris | Product Designer",
   description: "Design portfolio built with Figma and Cursor",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+    ],
+  },
 };
 
 export default function RootLayout({

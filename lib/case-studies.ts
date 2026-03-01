@@ -38,13 +38,15 @@ export type CaseStudyChallengeContent = {
 export type CaseStudySolutionItem = {
   title: string;
   description: string;
-  /** 'single' = 1 full-width image; 'featured' = 1 large + 3 smaller */
-  layout: "single" | "featured";
+  /** 'single' = 1 full-width image; 'featured' = 1 large + 3 smaller; 'double' = 2 images side by side */
+  layout: "single" | "featured" | "double";
   images: readonly string[];
 };
 
 export type CaseStudySolutionContent = {
   heading: string;
+  /** Optional image shown directly below the heading (e.g. hero for the section) */
+  headingImage?: string;
   items: readonly CaseStudySolutionItem[];
 };
 
@@ -70,15 +72,15 @@ export type CaseStudyTestimonialContent = {
 };
 
 const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
-  "project-1": {
+  "lloyds-bank-mvp": {
     logo: "LLOYDS",
     logoDefaultSvg: "/lloyds-logo-default.svg",
     logoLightSvg: "/lloyds-logo-light.svg",
     heading: "From concept to £1B+ in trades: designing Lloyds' MVP",
     subHeading:
       "Designing a digital-first FX trading experience to replace high-friction manual booking and legacy portals for the largest SME business bank in the UK.",
-    tags: [],
-    heroImage: "/lloyds-cover.png",
+    tags: ["Enterprise", "Web App", "Commercial Banking", "B2B"],
+    heroImage: "/Lloyds Bank Project/lloydsbank-hero.png",
   },
   "project-2": {
     logo: "COBA TECHNOLOGY",
@@ -92,18 +94,18 @@ const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
   },
   familypay: {
     logo: "FAMILYPAY",
-    logoDefaultSvg: "/familypay-logo-default.png",
-    logoLightSvg: "/familypay-logo-light.png",
-    heading: "Redefining cross-border family finance for closed-currency markets",
+    logoDefaultSvg: "/familypay-logo-default.svg",
+    logoLightSvg: "/familypay-logo-light.svg",
+    heading: "Redefining money movement for closed-currency markets",
     subHeading:
-      "Designing a multi-currency digital wallet and family spending hub to bridge the gap between international expats and their families abroad.",
-    tags: ["Fintech", "Mobile App", "B2C"],
-    heroImage: "/placeholder.png",
+      "Designing a multi-currency digital wallet and spending infrastructure to bridge the gap between international expats and their families abroad.",
+    tags: ["Fintech", "Mobile App", "B2C", "Money Exchange"],
+    heroImage: "/FamilyPay/hero.png",
   },
 };
 
 const OVERVIEW_CONTENT: Partial<Record<ProjectSlug, CaseStudyOverviewContent>> = {
-  "project-1": {
+  "lloyds-bank-mvp": {
     title: "Delivering a high-performance banking MVP in six months.",
     description:
       "I led the design of a commercial banking MVP for Lloyds Banking Group, transitioning SME customers from legacy workflows into a modern SaaS environment. As the sole designer, I architected the end-to-end strategy for a core FX trading module and a foundation that now supports Cash Flow, Forecasting, and accounting integrations. The platform was designed and shipped in less than six months and remains the bank's leading digital channel for its commercial division.",
@@ -126,14 +128,14 @@ const OVERVIEW_CONTENT: Partial<Record<ProjectSlug, CaseStudyOverviewContent>> =
     },
   },
   familypay: {
-    title: "Connecting international families through a central digital wallet.",
+    title: "Orchestrating global family finance via a central digital wallet.",
     description:
-      "I led the end-to-end design of FamilyPay, a mobile-first digital wallet designed to help families in closed-currency markets manage multi-currency spending. As the sole designer, I architected a lean onboarding experience and a multi-user ecosystem that allows account holders to manage physical and virtual cards for family members worldwide. While the product remains in the prototype phase, the design established a cohesive brand identity and a high-fidelity blueprint for a secure, transparent family finance hub.",
+      "I led the end-to-end design of FamilyPay, a mobile-first platform for managing multi-currency spending in closed-currency markets. As the sole designer, I architected a lean KYC onboarding experience and a multi-user ecosystem for the issuance and management of physical and virtual cards. My work established the core financial blueprint and brand identity for a secure, transparent hub, bridging the gap between internal operational flows and customer-facing wallet management.",
     projectDetails: {
       client: "myFamilyWallet (FamilyPay)",
       platform: "iOS & Android",
       team: ["Solo Product Designer"],
-      industry: ["Consumer Fintech", "Remittance"],
+      industry: ["Consumer fintech (B2C)", "Remittance"],
     },
   },
   "project-3": {
@@ -163,7 +165,7 @@ const OVERVIEW_CONTENT: Partial<Record<ProjectSlug, CaseStudyOverviewContent>> =
 const CHALLENGE_CONTENT: Partial<
   Record<ProjectSlug, CaseStudyChallengeContent>
 > = {
-  "project-1": {
+  "lloyds-bank-mvp": {
     heading: "High-friction workflows and costly trade reversals.",
     problem:
       "Lloyds was losing market share to fintechs offering smoother, digital-first FX experiences. SME customers were forced to navigate fragmented legacy portals with poor UX, causing many to resort to manual phone-in trades. This disconnected workflow created friction around pricing and execution, whilst the bank's reliance on manual bookings led to slow fulfilment and expensive trade reversals.",
@@ -196,13 +198,13 @@ const CHALLENGE_CONTENT: Partial<
   familypay: {
     heading: "Navigating the friction of restricted currency and manual transfers.",
     problem:
-      "Families in closed-currency markets (such as Algeria) face significant barriers when shopping online or travelling, often relying on high-friction manual processes to access USD or EUR. Existing remittance tools focus on one-off transfers rather than a persistent, shared family ecosystem where funds can be managed, allocated, and monitored in real-time.",
+      "Families in closed-currency markets face significant barriers when shopping online or travelling, often relying on high-friction manual processes to access USD or EUR. Existing remittance tools focus on one-off transfers rather than a persistent, shared ecosystem where money storage, allocation, and real-time monitoring can be managed centrally.",
     objective: {
-      intro: "Create a high-fidelity mobile prototype to secure future investment and development.",
+      intro: "Create a high-fidelity mobile prototype to secure investment and define the core money movement infrastructure.",
       items: [
         "Design a frictionless KYC onboarding flow integrated with Onfido for instant verification.",
-        "Build a multi-user interface for managing sub-accounts and prepaid cards.",
-        "Establish a modern, trustworthy brand aesthetic for a 25–50-year-old male demographic.",
+        "Build a multi-user interface for managing sub-accounts and the issuance of prepaid cards.",
+        "Establish a modern, trustworthy brand aesthetic for a 25–50-year-old demographic.",
       ],
     },
   },
@@ -241,19 +243,20 @@ const CHALLENGE_CONTENT: Partial<
 const SOLUTION_CONTENT: Partial<
   Record<ProjectSlug, CaseStudySolutionContent>
 > = {
-  "project-1": {
+  "lloyds-bank-mvp": {
     heading: "A lean, FX banking MVP built for trust.",
+    headingImage: "/log in.png",
     items: [
       {
         title: "Precision Trade Execution",
         description:
-          "An FX trade module and 2-step trade flow with real-time rates and digital confirmations to eliminate manual booking errors and pricing uncertainty.",
+          "An FX trade module and 3-step trade flow with real-time rates and digital confirmations to eliminate manual booking errors and pricing uncertainty.",
         layout: "featured",
         images: [
-          "/placeholder.png",
-          "/placeholder.png",
-          "/placeholder.png",
-          "/placeholder.png",
+          "/Lloyds Bank Project/Foreign Exchange.png",
+          "/Lloyds Bank Project/Exchange 1-3.png",
+          "/Lloyds Bank Project/Exchange 2-3.png",
+          "/Lloyds Bank Project/Exchange 3-3.png",
         ],
       },
       {
@@ -261,14 +264,14 @@ const SOLUTION_CONTENT: Partial<
         description:
           "A platform landing screen providing an immediate snapshot of currency positions and recent multi-user activity via customisable widgets, fully editable.",
         layout: "single",
-        images: ["/placeholder.png"],
+        images: ["/Lloyds Bank Project/dashboard.png"],
       },
       {
         title: "Mobile-Responsive Trading",
         description:
           "Optimised layouts for secure, on-the-go execution, ensuring treasurers can manage exposure without being tethered to a desktop.",
         layout: "single",
-        images: ["/placeholder.png"],
+        images: ["/Lloyds Bank Project/mobile.png"],
       },
     ],
   },
@@ -300,27 +303,35 @@ const SOLUTION_CONTENT: Partial<
   },
   familypay: {
     heading: "A transparent, high-speed family spending hub.",
+    headingImage: "/FamilyPay/zoom.png",
     items: [
       {
         title: "Lean Onboarding & Verification",
         description:
           "I designed a streamlined 'Know Your Customer' (KYC) journey, leveraging Onfido integration to ensure account security without compromising on speed. The flow focuses on clarity and trust, guiding users through ID verification and wallet setup in a matter of minutes.",
         layout: "single",
-        images: ["/placeholder.png"],
+        images: ["/FamilyPay/KYC.png"],
       },
       {
         title: "The Family Spending Ecosystem",
         description:
           "The core of the app is a central hub where the primary account holder can allocate funds to family members instantaneously. I designed a comprehensive card management suite where users can toggle between virtual and physical cards, set granular spending rules for children, and monitor global transactions via real-time alerts.",
         layout: "single",
-        images: ["/placeholder.png"],
+        images: ["/FamilyPay/cards.png"],
       },
       {
         title: "Multi-Currency Exchange",
         description:
-          "To solve the \"closed-currency\" pain point, I designed a simple, 3-step exchange interface. Users can hold balances in multiple currencies, allowing family members abroad to spend locally via their linked cards, effectively eliminating the need for physical cash and opaque black-market exchange rates.",
+          "To solve the \"closed-currency\" pain point, I designed a single-step exchange interface. Users can hold balances in multiple currencies, allowing family members abroad to spend locally via their linked cards, effectively eliminating the need for physical cash and opaque black-market exchange rates.",
         layout: "single",
-        images: ["/placeholder.png"],
+        images: ["/FamilyPay/exchange.png"],
+      },
+      {
+        title: "Brand Identity",
+        description:
+          "A cohesive visual language that elevated myFamilyWallet into the modern, trustworthy FamilyPay ecosystem.",
+        layout: "double",
+        images: ["/FamilyPay/brand-1.png", "/FamilyPay/brand-2.png"],
       },
     ],
   },
@@ -367,7 +378,7 @@ const SOLUTION_CONTENT: Partial<
 const RESULTS_CONTENT: Partial<
   Record<ProjectSlug, CaseStudyResultsContent>
 > = {
-  "project-1": {
+  "lloyds-bank-mvp": {
     heading: "Results",
     subheading: "From concept to go-live, in just 6 months.",
     metrics: [
@@ -462,7 +473,7 @@ const RESULTS_CONTENT: Partial<
 const TESTIMONIAL_CONTENT: Partial<
   Record<ProjectSlug, CaseStudyTestimonialContent>
 > = {
-  "project-1": {
+  "lloyds-bank-mvp": {
     heading: "Testimonial",
     name: "Danny Hill",
     title: "Director, Lloyds Banking Group",

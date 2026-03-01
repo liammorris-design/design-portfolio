@@ -36,7 +36,7 @@ export function WorkCarousel() {
           const isComingSoon = "isComingSoon" in proj && proj.isComingSoon;
           const cardContent = (
             <>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-none bg-muted">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-card)] bg-muted">
                 <Image
                   src={proj.image}
                   alt=""

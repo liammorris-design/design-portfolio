@@ -38,7 +38,7 @@ export function CaseStudyTemplate({ project, children }: CaseStudyTemplateProps)
       {solutionContent && (
         <SolutionSection content={solutionContent} />
       )}
-      {resultsContent && (
+      {resultsContent && project.slug !== "familypay" && (
         <ResultsSection content={resultsContent} />
       )}
       {testimonialContent && (

@@ -46,7 +46,7 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
           {otherProjects.map((proj) => {
             const cardContent = (
               <>
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-muted">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-card)] bg-muted">
                   <Image
                     src={proj.image}
                     alt=""

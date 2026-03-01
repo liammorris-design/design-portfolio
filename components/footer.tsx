@@ -9,9 +9,14 @@ export function Footer() {
       <div className="section-frame px-20 py-20">
         {/* Bottom row */}
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          <p className="text-sm text-muted-foreground">
-            Copyright © 2026 Liam Morris Design.
-          </p>
+          <div className="flex flex-row flex-wrap items-center gap-x-2 gap-y-1">
+            <p className="text-sm text-muted-foreground">
+              Copyright © 2026 Liam Morris Design.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Built using Cursor.
+            </p>
+          </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Button variant="outline" size="icon" className="rounded-full" asChild>

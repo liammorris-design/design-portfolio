@@ -27,7 +27,7 @@ export function ProjectPageContent({ project, otherProjects }: ProjectPageConten
         </header>
 
         {/* Hero image */}
-        <div className="relative mb-12 aspect-[1080/680] w-full overflow-hidden rounded-lg border border-border bg-muted">
+        <div className="relative mb-12 aspect-[1080/680] w-full overflow-hidden rounded-[var(--radius-card)] border border-border bg-muted">
           <Image
             src={project.image}
             alt={project.title}

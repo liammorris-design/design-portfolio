@@ -103,7 +103,7 @@ export function TestimonialsSection() {
                     opacity: 0,
                     transition: { duration: 0.3, ease: "easeIn" },
                   }}
-                  className="absolute inset-0 flex flex-col overflow-hidden rounded-none border border-border bg-white p-[48px] dark:bg-white/[0.03]"
+                  className="absolute inset-0 flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-white p-[48px] dark:bg-white/[0.03]"
                 >
                   <div className="mb-6 flex shrink-0 items-start gap-4">
                     <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
@@ -179,7 +179,7 @@ export function TestimonialsSection() {
                     key={i}
                     type="button"
                     onClick={() => goTo(i)}
-                    className="h-[4px] w-12 overflow-hidden rounded-none bg-muted-foreground/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="h-[4px] w-12 overflow-hidden rounded-none bg-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-muted-foreground/50"
                     aria-label={`Go to testimonial ${i + 1}`}
                     aria-current={active === i ? "true" : undefined}
                   >

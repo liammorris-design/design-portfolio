@@ -23,7 +23,7 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
             <h2 className="cs-challenge-heading">{content.heading}</h2>
           </div>
           <div className="cs-challenge-panels">
-            <div className="cs-challenge-panel flex w-full flex-col gap-2 overflow-hidden rounded-none border border-border bg-white px-8 py-8 text-foreground dark:bg-white/[0.03]">
+            <div className="cs-challenge-panel flex w-full flex-col gap-2 overflow-hidden rounded-[var(--radius-card)] border border-border bg-white px-8 py-8 text-foreground dark:bg-white/[0.03]">
               <h4 className="cs-challenge-panel-title">
                 <AlertTriangle
                   className="cs-challenge-icon cs-challenge-icon-problem"
@@ -33,7 +33,7 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
               </h4>
               <p className="cs-challenge-panel-text">{content.problem}</p>
             </div>
-            <div className="cs-challenge-panel flex w-full flex-col gap-2 overflow-hidden rounded-none border border-border bg-white px-8 py-8 text-foreground dark:bg-white/[0.03]">
+            <div className="cs-challenge-panel flex w-full flex-col gap-2 overflow-hidden rounded-[var(--radius-card)] border border-border bg-white px-8 py-8 text-foreground dark:bg-white/[0.03]">
               <h4 className="cs-challenge-panel-title">
                 <Goal
                   className="cs-challenge-icon cs-challenge-icon-objective"
