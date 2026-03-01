@@ -19,10 +19,7 @@ export const metadata: Metadata = {
   title: "Liam Morris | Product Designer",
   description: "Design portfolio built with Figma and Cursor",
   icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
-    ],
+    icon: { url: "/icon.png", type: "image/png", sizes: "32x32" },
   },
 };
 

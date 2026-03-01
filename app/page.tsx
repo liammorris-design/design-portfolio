@@ -199,7 +199,7 @@ export default function Home() {
             {/* Left: portrait */}
             <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-[var(--radius-card)] border border-border bg-muted md:max-w-none">
               <img
-                src="/profile-pic.jpeg"
+                src="/profile-pic.JPG"
                 alt="Liam Morris"
                 className="size-full object-cover"
               />

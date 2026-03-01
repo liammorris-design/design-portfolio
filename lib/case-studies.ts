@@ -100,7 +100,7 @@ const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
     subHeading:
       "Designing a multi-currency digital wallet and spending infrastructure to bridge the gap between international expats and their families abroad.",
     tags: ["Fintech", "Mobile App", "B2C", "Money Exchange"],
-    heroImage: "/FamilyPay/hero.png",
+    heroImage: "/FamilyPay/Hero.png",
   },
 };
 
@@ -245,7 +245,7 @@ const SOLUTION_CONTENT: Partial<
 > = {
   "lloyds-bank-mvp": {
     heading: "A lean, FX banking MVP built for trust.",
-    headingImage: "/log in.png",
+    headingImage: "/Lloyds Bank Project/Log in.png",
     items: [
       {
         title: "Precision Trade Execution",
@@ -264,14 +264,14 @@ const SOLUTION_CONTENT: Partial<
         description:
           "A platform landing screen providing an immediate snapshot of currency positions and recent multi-user activity via customisable widgets, fully editable.",
         layout: "single",
-        images: ["/Lloyds Bank Project/dashboard.png"],
+        images: ["/Lloyds Bank Project/Dashboard.png"],
       },
       {
         title: "Mobile-Responsive Trading",
         description:
           "Optimised layouts for secure, on-the-go execution, ensuring treasurers can manage exposure without being tethered to a desktop.",
         layout: "single",
-        images: ["/Lloyds Bank Project/mobile.png"],
+        images: ["/Lloyds Bank Project/Mobile.png"],
       },
     ],
   },
@@ -303,7 +303,7 @@ const SOLUTION_CONTENT: Partial<
   },
   familypay: {
     heading: "A transparent, high-speed family spending hub.",
-    headingImage: "/FamilyPay/zoom.png",
+    headingImage: "/FamilyPay/Zoom.png",
     items: [
       {
         title: "Lean Onboarding & Verification",
@@ -317,21 +317,21 @@ const SOLUTION_CONTENT: Partial<
         description:
           "The core of the app is a central hub where the primary account holder can allocate funds to family members instantaneously. I designed a comprehensive card management suite where users can toggle between virtual and physical cards, set granular spending rules for children, and monitor global transactions via real-time alerts.",
         layout: "single",
-        images: ["/FamilyPay/cards.png"],
+        images: ["/FamilyPay/Cards.png"],
       },
       {
         title: "Multi-Currency Exchange",
         description:
           "To solve the \"closed-currency\" pain point, I designed a single-step exchange interface. Users can hold balances in multiple currencies, allowing family members abroad to spend locally via their linked cards, effectively eliminating the need for physical cash and opaque black-market exchange rates.",
         layout: "single",
-        images: ["/FamilyPay/exchange.png"],
+        images: ["/FamilyPay/Exchange.png"],
       },
       {
         title: "Brand Identity",
         description:
           "A cohesive visual language that elevated myFamilyWallet into the modern, trustworthy FamilyPay ecosystem.",
         layout: "double",
-        images: ["/FamilyPay/brand-1.png", "/FamilyPay/brand-2.png"],
+        images: ["/FamilyPay/Brand-1.png", "/FamilyPay/Brand-2.png"],
       },
     ],
   },
