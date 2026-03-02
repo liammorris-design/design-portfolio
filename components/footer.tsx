@@ -21,7 +21,7 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <Button variant="outline" size="icon" className="rounded-full" asChild>
                 <a
-                  href="https://www.linkedin.com/in/liammorris/"
+                  href="https://www.linkedin.com/in/liammorrisdesign/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"

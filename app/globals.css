@@ -221,7 +221,16 @@
   -webkit-mask-size: 100% 100%;
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
+  opacity: 0.8;
+  transition:
+    opacity 200ms ease-out,
+    transform 300ms ease-out;
   pointer-events: none;
+}
+
+.hero-with-grid:hover::before {
+  opacity: 1;
+  transform: scale(1.02);
 }
 
 /* Rounded edges for input fields (buttons use rounded-xl in component) */
