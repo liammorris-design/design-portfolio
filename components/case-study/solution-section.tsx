@@ -13,7 +13,7 @@ const ASPECT_RATIO = 16 / 10;
 export function SolutionSection({ content }: SolutionSectionProps) {
   return (
     <section className="cs-solution">
-      <div className="section-frame px-[var(--cs-padding-x)] py-16 md:py-20">
+      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20">
         <div className="cs-solution-inner">
           <div className="cs-solution-label-wrap">
             <TrendingUp
@@ -42,8 +42,8 @@ export function SolutionSection({ content }: SolutionSectionProps) {
           <div className="cs-solution-items">
             {content.items.map((item, idx) => (
               <div key={idx} className="cs-solution-item">
-                <h4 className="cs-solution-item-title">{item.title}</h4>
-                <p className="cs-solution-item-desc">{item.description}</p>
+                {item.title && <h4 className="cs-solution-item-title">{item.title}</h4>}
+                {item.description && <p className="cs-solution-item-desc">{item.description}</p>}
                 {item.layout === "single" ? (
                   <div
                     className="cs-solution-image-wrap"
@@ -105,6 +105,11 @@ export function SolutionSection({ content }: SolutionSectionProps) {
               </div>
             ))}
           </div>
+          {content.footerNote && (
+            <p className="mt-12 text-center text-sm text-muted-foreground">
+              {content.footerNote}
+            </p>
+          )}
         </div>
       </div>
     </section>

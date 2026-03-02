@@ -38,8 +38,8 @@ export type CaseStudyChallengeContent = {
 };
 
 export type CaseStudySolutionItem = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   /** 'single' = 1 full-width image; 'featured' = 1 large + 3 smaller; 'double' = 2 images side by side */
   layout: "single" | "featured" | "double";
   images: readonly string[];
@@ -50,6 +50,8 @@ export type CaseStudySolutionContent = {
   /** Optional image shown directly below the heading (e.g. hero for the section) */
   headingImage?: string;
   items: readonly CaseStudySolutionItem[];
+  /** Optional footer note (e.g. "case study being updated") */
+  footerNote?: string;
 };
 
 export type CaseStudyResultsMetric = {
@@ -92,27 +94,27 @@ const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
     subHeading:
       "Designing a white-label SaaS platform that bridges legacy bank infrastructure with modern, modular tools for FX, Cash Flow, and Forecasting.",
     tags: [],
-    heroImage: "/placeholder.png",
+    heroImage: "/CoBa Project/Hero image.png",
   },
   familypay: {
     logo: "FAMILYPAY",
-    logoDefaultSvg: "/familypay-logo-default.svg",
-    logoLightSvg: "/familypay-logo-light.svg",
+    logoDefaultSvg: "/familypage-logo-light-mode.png",
+    logoLightSvg: "/familypage-logo-dark-mode.png",
     heading: "Redefining money movement for closed-currency markets",
     subHeading:
       "Designing a multi-currency digital wallet and spending infrastructure to bridge the gap between international expats and their families abroad.",
     tags: ["Fintech", "Mobile App", "B2C", "Money Exchange"],
     heroImage: "/FamilyPay/Hero.png",
   },
-  "project-3": {
+  "an-post-money": {
     logo: "AN POST MONEY",
-    logoDefaultSvg: "/anpost-money-logo.png",
-    logoLightSvg: "/anpost-money-logo.png",
-    heading: "Retail Banking Mobile App",
+    logoDefaultSvg: "/an-post-logo2.png",
+    logoLightSvg: "/an-post-logo2.png",
+    heading: "Modernising Retail Banking with Smart Money Management",
     subHeading:
       "Scaled a retail banking app with open-banking and automated savings. Partnered with cross-functional squads to drive 4.5-star growth.",
-    tags: ["Consumer", "Mobile App", "Fintech B2C"],
-    heroImage: "/anpost-thumbnail.png",
+    tags: ["Consumer", "Mobile App", "Retail Banking B2C"],
+    heroImage: "/anpost-hero-video-placeholder.png",
     heroVideo: [
       { src: "/anpost-hero.webm", type: "video/webm" },
       { src: "/anpost-hero.mp4", type: "video/mp4" },
@@ -133,7 +135,7 @@ const OVERVIEW_CONTENT: Partial<Record<ProjectSlug, CaseStudyOverviewContent>> =
     },
   },
   "project-2": {
-    title: "Engineering a scalable foundation for digital commercial banking.",
+    title: "Founding Product Designer for a modular, whitelabel commercial banking platform.",
     description:
       "I led the end-to-end product design for CoBa, a modular fintech engine designed to transition complex financial workflows into a white-label SaaS environment. As the sole designer, I architected the infrastructure for a core FX trading module and a foundation that supports Cash Flow, Forecasting, and accounting integrations. The platform was successfully deployed for a Tier 1 bank in the UK and is currently undergoing a pilot with a second Tier 1 institution in North America.",
     projectDetails: {
@@ -154,15 +156,15 @@ const OVERVIEW_CONTENT: Partial<Record<ProjectSlug, CaseStudyOverviewContent>> =
       industry: ["Consumer fintech (B2C)", "Remittance"],
     },
   },
-  "project-3": {
-    title: "Scaling a modern retail banking app.",
+  "an-post-money": {
+    title: "Scaling digital banking for Ireland's largest postal service.",
     description:
-      "For An Post Money I worked on a mobile experience focused on everyday money management, open-banking insights, and accessible savings journeys. The goal was to bring premium banking features to a mainstream audience without sacrificing clarity or trust.",
+      "As the cost of living rises, it’s more important than ever for providers to help customers keep on top of their finances—in the short term and over time. An Post wanted to put more financial power and control in users’ hands: helping them understand their spending behaviour, manage savings, and set budgets so they could stay on track with their goals. As the lead designer for the mobile pod, I delivered this by redesigning the central account dashboard, creating the end-to-end \"Savings Jars\" workflow, and designing the integration of Tink's Open Banking and Money Manager tools to provide users with a holistic, real-time financial overview.",
     projectDetails: {
       client: "An Post Money",
       platform: "iOS & Android mobile app",
-      team: ["Product Designer (me)", "Mobile engineering", "Product owner"],
-      industry: ["Retail Banking", "Fintech B2C"],
+      team: ["Mobile Pod Design Lead (me)", "Offshore dev team", "Product owner"],
+      industry: ["Retail Banking", "Retail Banking B2C"],
     },
   },
   "project-4": {
@@ -224,18 +226,18 @@ const CHALLENGE_CONTENT: Partial<
       ],
     },
   },
-  "project-3": {
+  "an-post-money": {
     heading: "Modernising money management without overwhelming customers.",
     problem:
-      "Customers expected sophisticated insights and automation but were often overwhelmed by dense, jargon-heavy interfaces. Legacy journeys made it difficult to build helpful habits like saving regularly or understanding spending patterns.",
+      "With the rising cost of living, it is increasingly difficult for consumers to keep track of their finances. Many lack a clear, holistic overview of their spending behaviour, making it harder to manage savings or stay on track with financial goals during tougher economic times.",
     objective: {
       intro:
         "Design a mobile experience that would help everyday users to:",
       items: [
-        "Quickly understand their balance, spending, and commitments.",
-        "Set up savings and goals without reading a manual.",
-        "Trust the app with sensitive financial decisions.",
-        "Feel confident using advanced features over time.",
+        "See balance, spending, and commitments in one place with Open Banking.",
+        "Set up savings and goals with personalised budgeting tools.",
+        "Trust the app with a secure, transparent financial experience.",
+        "Build better habits with categorised tracking and smart budgeting.",
       ],
     },
   },
@@ -292,28 +294,35 @@ const SOLUTION_CONTENT: Partial<
     ],
   },
   "project-2": {
-    heading: "A variable-driven, modular financial ecosystem.",
+    heading: "A variable-driven, modular treasury ecosystem.",
+    headingImage: "/CoBa Project/login.png",
+    footerNote:
+      "This case study is being updated with more images. Additional designs, including the FX module, Forecast module, and payment flows, are available upon request.",
     items: [
-      {
-        title: "White-Label Infrastructure",
-        description:
-          "I designed a highly flexible interface supporting both sidebar and top-navigation layouts to accommodate varied bank ecosystems. By leveraging a design system built on Figma variables and semantic groupings, the entire platform is engineered to be reskinned at the click of a button—allowing for instant changes to brand colours, typography, and component styling.",
-        layout: "featured",
-        images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"],
-      },
       {
         title: "Advanced Financial Modules",
         description:
           "While the architecture supports various modules, I focused on designing data-rich experiences for Cash Flow management and Forecasting. These tools allow users to synchronise real-time data from third-party accounting software to create predictive 2-year forecasts. I translated these complex datasets into aesthetic, chart-heavy dashboards that turn manual Excel processes into automated, visual workflows.",
         layout: "single",
-        images: ["/placeholder.png"],
+        images: ["/CoBa Project/cash flow.png"],
+      },
+      {
+        title: "White-Label Infrastructure",
+        description:
+          "I designed a highly flexible interface supporting both sidebar and top-navigation layouts to accommodate varied bank ecosystems. By leveraging a design system built on Figma variables and semantic groupings, the entire platform is engineered to be reskinned at the click of a button—allowing for instant changes to brand colours, typography, and component styling.",
+        layout: "featured",
+        images: [
+          "/CoBa Project/ia.png",
+          "/CoBa Project/transactions.png",
+          "/CoBa Project/report-1.png",
+        ],
       },
       {
         title: "Dual-Sided Intelligence",
         description:
           "The platform accounts for both commercial customers and bank employees. I designed a \"Bank View\" overlay that allows relationship managers to monitor their specific client patches and view real-time stats, enabling a more proactive and informed customer service experience.",
-        layout: "single",
-        images: ["/placeholder.png"],
+        layout: "double",
+        images: ["/CoBa Project/brand.png", "/CoBa Project/brand-2.png"],
       },
     ],
   },
@@ -345,28 +354,52 @@ const SOLUTION_CONTENT: Partial<
       {
         title: "Brand Identity",
         description:
-          "A cohesive visual language that elevated myFamilyWallet into the modern, trustworthy FamilyPay ecosystem.",
+          "A cohesive visual language that elevated FamilyPay into a modern, trustworthy brand. I created a brand design strong enough to support the initial MVP launch and to impress investors—establishing a clear identity, tone of voice, and visual system that could scale as the product grew.",
         layout: "double",
         images: ["/FamilyPay/Brand-1.png", "/FamilyPay/Brand-2.png"],
       },
     ],
   },
-  "project-3": {
-    heading: "Everyday banking journeys that feel considered.",
+  "an-post-money": {
+    heading: "Designing for Financial Clarity and Control",
     items: [
       {
-        title: "Home hub for daily decisions",
-        description:
-          "A reworked home screen that surfaces balances, upcoming payments, and helpful insights in a single, glanceable layout.",
-        layout: "featured",
-        images: ["/placeholder.png", "/placeholder.png", "/placeholder.png", "/placeholder.png"],
+        layout: "single",
+        images: ["/An Post Money/Explainers.png"],
       },
       {
-        title: "Guided savings and goals",
-        description:
-          "Step-by-step flows for setting up pots and savings rules, designed to remove friction and encourage repeat use.",
+        title: "Open Banking & Accounts Dashboard",
+        description: "Accounts are securely linked in one place using Open Banking, providing a holistic view of your finances alongside real-time spending insights and analytics.",
         layout: "single",
-        images: ["/placeholder.png"],
+        images: ["/An Post Money/Dashboard.png"],
+      },
+      {
+        title: "Smart Onboarding & Guided Discovery",
+        description: "Personalised walkthroughs and tooltips that simplify complex features, helping users to confidently navigate their accounts, manage budgets, and build better financial habits from the first log-in.",
+        layout: "single",
+        images: ["/An Post Money/Tooltips.png"],
+      },
+      {
+        title: "Smart Budgeting & Spending Insights",
+        description: "A seamless integration of Tink's Money Manager toolkit, providing users with real-time spending analysis and categorised insights. This allows for personalised budgeting and a deeper understanding of financial behaviour within a native experience.",
+        layout: "double",
+        images: ["/An Post Money/Money Manager.png", "/An Post Money/Budgeting.png"],
+      },
+      {
+        title: "Automated Savings Jars",
+        description: "An end-to-end workflow for creating personalised pots with automated savings through recurring transfers or round-ups. This allows users to set specific targets, track progress in real-time, and manage funds independently from their main account balance.",
+        layout: "double",
+        images: ["/An Post Money/Savings Jar.png", "/An Post Money/Savings Jar-1.png"],
+      },
+      {
+        title: "Expense Categorisation",
+        description: "Automatic categorisation of transactions for clearer spending insights and control.",
+        layout: "single",
+        images: ["/An Post Money/Expense Categorisation.png"],
+      },
+      {
+        layout: "single",
+        images: ["/An Post Money/Zoom.png"],
       },
     ],
   },
@@ -421,7 +454,7 @@ const RESULTS_CONTENT: Partial<
     subheading: "A proven engine for international banking scale.",
     metrics: [
       {
-        value: "Tier 1 Launch",
+        value: "UK Tier 1",
         description: "Successfully deployed and live with a major UK commercial bank.",
       },
       {
@@ -429,7 +462,7 @@ const RESULTS_CONTENT: Partial<
         description: "Modular flexibility supporting customisable SaaS subscription models.",
       },
       {
-        value: "Multi-platform sync",
+        value: "12+",
         description: "Integrated support for major accounting software providers (Xero, QuickBooks, Sage).",
       },
       {
@@ -448,7 +481,7 @@ const RESULTS_CONTENT: Partial<
       { value: "Brand Cohesion", description: "Successfully elevated the visual language of 'myFamilyWallet' into the modern, trustworthy 'FamilyPay' ecosystem" },
     ],
   },
-  "project-3": {
+  "an-post-money": {
     heading: "Results",
     subheading: "A calmer, more confident mobile experience.",
     metrics: [
@@ -457,12 +490,8 @@ const RESULTS_CONTENT: Partial<
         description: "Target App Store rating through clearer journeys",
       },
       {
-        value: "More usage",
-        description: "Increased engagement with savings and insights features",
-      },
-      {
-        value: "Fewer drop-offs",
-        description: "Streamlined onboarding and task flows across the app",
+        value: "#11",
+        description: "Finance app on the Irish iOS App Store",
       },
     ],
   },
@@ -500,25 +529,14 @@ const TESTIMONIAL_CONTENT: Partial<
   },
   "project-2": {
     heading: "Testimonial",
-    name: "Senior stakeholder, CoBa Technology",
-    title: "Director, Product & Partnerships",
+    name: "Carl Hasty",
+    title: "CEO at CoBa Technology",
     quote:
-      "Liam helped us turn a complex technical platform into something banks could immediately understand and get behind.",
+      "Liam was core to getting the platform live, and I would hire him again without hesitation.",
     text:
-      "Working across product, engineering, and commercial teams, Liam translated an ambitious technical vision into a practical, repeatable user experience. He balanced the needs of our early adopter banks with the realities of a lean startup, leaving us with a system that still feels robust and adaptable.",
+      "I worked with Liam for over two years and hired him early to lead product design as we delivered a Tier 1 bank contract. He operated well beyond a typical design role, contributing across product, sales support, and senior client engagements. He has strong commercial instincts, requires very little direction, and delivers under pressure.",
     avatar: "/carl-hasty.png",
     companyLogo: "coba",
-  },
-  "project-3": {
-    heading: "Testimonial",
-    name: "Product lead, Retail banking",
-    title: "Head of Digital Journeys",
-    quote:
-      "He continuously pushed for simplicity without losing the richness our customers expect from a full-featured banking app.",
-    text:
-      "Liam brought a structured, evidence-based approach to redesigning key journeys in our mobile app. He worked well with stakeholders across the bank, grounding abstract requirements in concrete screens, prototypes, and tests that moved the programme forward.",
-    avatar: "/danny-hill.png",
-    companyLogo: "generic",
   },
   "project-4": {
     heading: "Testimonial",

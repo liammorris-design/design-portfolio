@@ -13,7 +13,7 @@ type ProjectPageContentProps = {
 export function ProjectPageContent({ project, otherProjects }: ProjectPageContentProps) {
   return (
     <div className="section-frame">
-      <article className="px-20 py-20">
+      <article className="px-5 py-5 md:px-20 md:py-5 md:py-20">
         {/* Project header */}
         <header className="mb-12">
           <h1 className="mb-4 text-foreground">
@@ -79,7 +79,7 @@ export function ProjectPageContent({ project, otherProjects }: ProjectPageConten
           <div className="flex flex-wrap gap-4">
             {otherProjects.map((p) => (
               <Button key={p.slug} variant="outline" size="lg" asChild>
-                <Link href={`/projects/${p.slug}`}>{p.title}</Link>
+                <Link href={`/projects/${p.slug}`} scroll={false}>{p.title}</Link>
               </Button>
             ))}
             <Button variant="outline" size="lg" className="gap-2" asChild>

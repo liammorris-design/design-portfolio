@@ -152,7 +152,7 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Button
-                  className="group flex h-8 items-start justify-center overflow-hidden py-0 text-sm font-medium"
+                  className="group mx-3 flex h-8 items-start justify-center overflow-hidden py-0 text-sm font-medium"
                   asChild
                 >
                   <a

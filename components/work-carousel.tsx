@@ -115,6 +115,7 @@ export function WorkCarousel() {
             <Link
               key={proj.slug}
               href={`/projects/${proj.slug}`}
+              scroll={false}
               aria-label={`View ${proj.title}`}
               className="group flex flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >

@@ -68,7 +68,7 @@ export function TestimonialsSection() {
 
   return (
     <section id="testimonials" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-20 py-20">
+      <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           {/* Left: Section title - max 315px */}
           <div className="max-w-[315px]">

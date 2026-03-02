@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 export function Footer() {
   return (
     <footer className="border-t border-border-subtle bg-background text-foreground">
-      <div className="section-frame px-20 py-20">
+      <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
         {/* Bottom row */}
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div className="flex flex-row flex-wrap items-center gap-x-2 gap-y-1">

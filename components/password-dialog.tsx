@@ -36,7 +36,7 @@ export function PasswordDialog({
       setUnlocked(projectSlug);
       setPassword("");
       onOpenChange(false);
-      router.push(`/projects/${projectSlug}`);
+      router.push(`/projects/${projectSlug}`, { scroll: false });
     } else {
       setError("Incorrect password. Please try again.");
     }

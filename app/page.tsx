@@ -36,8 +36,8 @@ export default function Home() {
         id="hero"
         className="flex min-h-[75vh] flex-1 flex-col"
       >
-        <div className="section-frame hero-with-grid relative flex flex-1 flex-col items-center justify-center px-20 py-30">
-          <div className="flex w-full max-w-2xl flex-col items-center gap-8 text-center">
+        <div className="section-frame hero-with-grid relative flex flex-1 flex-col items-center justify-center px-5 py-10 md:px-20 md:py-30">
+          <div className="flex w-full max-w-[48rem] flex-col items-center gap-8 text-center">
             {/* Avatar 40px + Available from Q1 2026 to the right */}
             <div className="hero-reveal hero-reveal-delay-5 flex items-center justify-center gap-3">
               <div className="relative inline-block size-10 shrink-0">
@@ -63,12 +63,14 @@ export default function Home() {
             </div>
 
             <h1 className="hero-reveal hero-reveal-delay-1">
-              Product Design Expert for AI, Fintech & SaaS.
+              Product Design Expert
+              <br />
+              for AI, Fintech & SaaS.
             </h1>
 
             {/* Subheader: 20px, 36px line height, two lines */}
             <p className="hero-reveal hero-reveal-delay-4 max-w-2xl text-[20px] leading-[36px] text-muted-foreground">
-              I bridge product strategy and production-ready design, helping high-growth squads navigate ambiguity and ship complex fintech at scale.
+              I bridge product strategy with production-ready design, helping teams navigate ambiguity and ship complex products at scale.
             </p>
 
             {/* CTAs - sentence case, 16px font */}
@@ -161,7 +163,7 @@ export default function Home() {
 
         {/* Work */}
         <section id="work" className="scroll-mt-14 w-full overflow-x-visible">
-          <div className="flex flex-col items-center overflow-x-visible px-20 py-20 text-center">
+          <div className="flex flex-col items-center overflow-x-visible px-5 py-5 md:px-20 md:py-20 text-center">
             <div className="mb-3 flex items-center justify-center gap-2">
             <Blocks className="size-4 shrink-0 text-muted-foreground" aria-hidden />
             <span className="font-mono text-sm font-medium uppercase tracking-section-label text-muted-foreground">
@@ -184,7 +186,7 @@ export default function Home() {
 
       {/* About: two-column bio, 1200px max, same spacing as Work */}
       <section id="about" className="scroll-mt-14 w-full border-b border-border-subtle">
-        <div className="section-frame px-20 py-20">
+        <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
           <div className="mb-3 flex items-center justify-center gap-2">
             <User className="size-4 shrink-0 text-muted-foreground" aria-hidden />
             <span className="font-mono text-sm font-medium uppercase tracking-section-label text-muted-foreground">

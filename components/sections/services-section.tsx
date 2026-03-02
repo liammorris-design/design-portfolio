@@ -56,7 +56,7 @@ const SHOW_SERVICE_IMAGES = false;
 export function ServicesSection() {
   return (
     <section id="services" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-20 py-20">
+      <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
         <div className="mb-3 flex items-center gap-2">
           <Component className="size-4 shrink-0 text-muted-foreground dark:text-white" aria-hidden />
           <span className="font-mono text-sm font-medium uppercase tracking-wider text-muted-foreground">

@@ -24,7 +24,7 @@ export function TestimonialSection({ content }: TestimonialSectionProps) {
 
   return (
     <section className="cs-testimonial">
-      <div className="section-frame px-[var(--cs-padding-x)] py-16 md:py-20">
+      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20">
         <div className="cs-testimonial-inner">
           <div className="cs-testimonial-card mx-auto max-w-[680px]">
             <div className="cs-testimonial-logo-wrap">

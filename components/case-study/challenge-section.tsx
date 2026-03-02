@@ -8,7 +8,7 @@ type ChallengeSectionProps = {
 export function ChallengeSection({ content }: ChallengeSectionProps) {
   return (
     <section className="cs-challenge">
-      <div className="section-frame px-[var(--cs-padding-x)] py-16 md:py-20">
+      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20">
         <div className="cs-challenge-inner">
           <div className="cs-challenge-header">
             <div className="cs-challenge-label-wrap">

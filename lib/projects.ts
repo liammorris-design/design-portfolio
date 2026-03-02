@@ -5,7 +5,7 @@ export const PROJECTS = [
     title: "FX Trading Platform MVP",
     description:
       "Designed a 0-to-1 FX platform processing £1B+ in flow. Focused on transactional workflows and audit logging for compliance.",
-    image: "/lloyds-thumbnail.png",
+    image: "/project cover images/lloyds-bank-cover.png",
     tags: ["Enterprise", "Web App", "Commercial Banking"],
     requiresPassword: false,
     isComingSoon: false,
@@ -16,7 +16,7 @@ export const PROJECTS = [
     title: "Whitelabel B2B SaaS Platform",
     description:
       "Architected a Treasury-first banking engine with account ingestion and cashflow forecasting. Built for modular, multi-bank deployment.",
-    image: "/coba-thumbnail.png",
+    image: "/project cover images/coba-cover.png",
     tags: ["SaaS", "Web App", "Fintech B2B"],
     requiresPassword: false,
     isComingSoon: false,
@@ -27,19 +27,19 @@ export const PROJECTS = [
     title: "B2C Mobile Digital Wallet App",
     description:
       "Designed a digital wallet and prepaid card solution. Delivered lean KYC onboarding and instant fund allocation for international families.",
-    image: "/familypay-thumbnail.png",
+    image: "/project cover images/family-pay-cover.png",
     tags: ["Remittance", "Mobile App", "B2C"],
     requiresPassword: false,
     isComingSoon: false,
   },
   {
-    slug: "project-3",
+    slug: "an-post-money",
     company: "AN POST MONEY",
-    title: "Retail Banking Mobile App",
+    title: "Modernising Retail Banking with Smart Money Management",
     description:
       "Scaled a retail banking app with open-banking and automated savings. Partnered with cross-functional squads to drive 4.5-star growth.",
-    image: "/anpost-thumbnail.png",
-    tags: ["Consumer", "Mobile App", "Fintech B2C"],
+    image: "/project cover images/an-post-cover.png",
+    tags: ["Consumer", "Mobile App", "Retail Banking B2C"],
     requiresPassword: false,
     isComingSoon: false,
   },

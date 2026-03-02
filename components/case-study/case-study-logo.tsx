@@ -24,13 +24,14 @@ export function CaseStudyLogo({
 
   if (logoDefaultSvg && logoLightSvg && mounted) {
     const src = resolvedTheme === "dark" ? logoLightSvg : logoDefaultSvg;
+    const isAnPost = logoDefaultSvg.toLowerCase().includes("an-post");
     return (
       <Image
         src={src}
         alt={logoText}
         width={116}
         height={32}
-        className="cs-logo cs-logo-img"
+        className={`cs-logo cs-logo-img${isAnPost ? " cs-logo-img--anpost" : ""}`}
       />
     );
   }

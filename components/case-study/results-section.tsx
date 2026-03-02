@@ -8,7 +8,7 @@ type ResultsSectionProps = {
 export function ResultsSection({ content }: ResultsSectionProps) {
   return (
     <section className="cs-results">
-      <div className="section-frame px-[var(--cs-padding-x)] py-16 md:py-20 text-center">
+      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20 text-center">
         <div className="cs-results-inner">
           <div className="mb-3 flex items-center justify-center gap-2">
             <Trophy
@@ -18,7 +18,13 @@ export function ResultsSection({ content }: ResultsSectionProps) {
             <span className="cs-results-label">{content.heading}</span>
           </div>
           <h2 className="cs-results-heading">{content.subheading}</h2>
-          <div className="cs-results-grid">
+          <div
+            className={
+              content.metrics.length === 2
+                ? "cs-results-grid cs-results-grid--two"
+                : "cs-results-grid"
+            }
+          >
             {content.metrics.map(({ value, description }) => (
               <div key={value} className="cs-results-item">
                 <p className="cs-results-value">{value}</p>

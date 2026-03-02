@@ -230,7 +230,7 @@
     @apply border-border outline-ring/50;
   }
   html {
-    scroll-behavior: auto; /* instant on navigation; in-page links use JS smooth scroll */
+    scroll-behavior: auto !important; /* no smooth scroll anywhere; in-page links use JS smooth scroll */
   }
   body {
     @apply bg-background text-foreground;

@@ -22,7 +22,7 @@ const METRICS = [
 export function ResultsSection() {
   return (
     <section id="results" className="scroll-mt-14 border-b border-border bg-background">
-      <div className="section-frame px-20 py-20 text-center">
+      <div className="section-frame px-5 py-5 md:px-20 md:py-20 text-center">
         <div className="mb-3 flex items-center justify-center gap-2">
           <Trophy className="size-4 shrink-0 text-muted-foreground" aria-hidden />
           <span className="font-mono text-sm font-medium uppercase tracking-section-label text-muted-foreground">

@@ -40,7 +40,7 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
         onOpenChange={setPasswordDialogOpen}
         projectSlug={passwordProjectSlug}
       />
-      <div className="section-frame px-[var(--cs-padding-x)] py-16 md:py-20">
+      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20">
         <h2 className="cs-view-more-heading text-center">View more projects</h2>
         <div className="cs-view-more-grid">
           {otherProjects.map((proj) => {
@@ -107,6 +107,7 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
               <Link
                 key={proj.slug}
                 href={`/projects/${proj.slug}`}
+                scroll={false}
                 aria-label={`View ${proj.title}`}
                 className="group flex flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
