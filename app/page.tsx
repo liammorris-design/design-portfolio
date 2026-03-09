@@ -38,7 +38,7 @@ export default function Home() {
         className="flex min-h-[75vh] flex-1 flex-col"
       >
         <div className="section-frame hero-with-grid relative flex flex-1 flex-col items-center justify-center px-5 py-10 md:px-20 md:py-30">
-          <div className="flex w-full max-w-[42rem] flex-col items-center gap-8 text-center">
+          <div className="flex w-full max-w-[42rem] flex-col items-center gap-6 text-center md:gap-8">
             {/* Avatar 40px + Available Q1 2026 to the right */}
             <div className="hero-reveal hero-reveal-delay-5 flex items-center justify-center gap-3">
               <div className="relative inline-block size-10 shrink-0">
