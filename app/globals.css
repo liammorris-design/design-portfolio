@@ -543,3 +543,10 @@ h6 {
   }
 }
 
+@media (max-width: 767px) {
+  #hero h1.hero-reveal {
+    font-size: 28px !important;
+    line-height: 34px !important;
+    letter-spacing: -1.12px !important;
+  }
+}
