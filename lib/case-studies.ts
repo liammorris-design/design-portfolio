@@ -85,7 +85,7 @@ const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
     heading: "From concept to £1B+ in trades: designing Lloyds' MVP",
     subHeading:
       "Designing a digital-first FX trading experience to replace high-friction manual booking and legacy portals for the largest SME business bank in the UK.",
-    tags: ["Enterprise", "Web App", "Commercial Banking", "B2B"],
+    tags: ["Enterprise", "Web App", "B2B", "Commercial Banking"],
     heroImage: "/Lloyds Bank Project/lloydsbank-hero.png",
     heroVideo: [{ src: "/lloyds-bank-hero-video.mp4", type: "video/mp4" }],
     heroVideoAutoplay: true,

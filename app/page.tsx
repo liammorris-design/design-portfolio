@@ -59,7 +59,7 @@ export default function Home() {
                 />
               </div>
               <span className="font-mono text-xs font-medium uppercase text-muted-foreground">
-                Available Q1 2026
+                AVAILABLE: Q1 2026
               </span>
             </div>
 

@@ -42,10 +42,10 @@ export function CTASection() {
               I&apos;m currently available from March 2026 for fully remote
               product design contracts.
             </p>
-            <div className="flex w-full flex-row gap-3">
+            <div className="hidden w-full flex-col gap-3 sm:flex sm:flex-row sm:flex-wrap sm:items-center">
               <Button
                 size="lg"
-                className="has-[>svg]:px-6 w-fit px-6 rounded-full text-base leading-6"
+                className="has-[>svg]:px-6 w-full px-6 rounded-full text-base leading-6 sm:w-auto"
                 asChild
               >
                 <a
@@ -61,7 +61,7 @@ export function CTASection() {
               <Button
                 size="lg"
                 variant="outline"
-                className="has-[>svg]:px-6 w-fit px-6 rounded-full text-base leading-6"
+                className="has-[>svg]:px-6 w-full px-6 rounded-full text-base leading-6 sm:w-auto"
                 asChild
               >
                 <Link

@@ -34,12 +34,12 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
               <button
                 type="button"
                 onClick={() => setProblemOpen((o) => !o)}
-                className="cs-challenge-panel-title cs-challenge-panel-trigger group absolute inset-0 left-0 right-0 top-0 flex w-full cursor-pointer appearance-none flex-col items-stretch border-none bg-transparent p-0 text-left md:static md:flex-row md:pointer-events-none md:cursor-default"
+                className="cs-challenge-panel-title cs-challenge-panel-trigger group flex w-full cursor-pointer appearance-none items-center justify-between border-none bg-transparent p-0 text-left md:pointer-events-none md:cursor-default"
                 aria-expanded={problemOpen}
                 aria-controls="cs-challenge-problem-content"
                 id="cs-challenge-problem-trigger"
               >
-                <span className="flex flex-1 items-center gap-2 pl-5 pt-5 md:pl-0 md:pt-0 md:py-0">
+                <span className="flex flex-1 items-center gap-2 pl-0 pt-0 md:pl-0 md:pt-0 md:py-0">
                   <AlertTriangle
                     className="cs-challenge-icon cs-challenge-icon-problem"
                     aria-hidden
@@ -48,7 +48,7 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
                 </span>
                 <ChevronDown
                   className={cn(
-                    "cs-challenge-chevron absolute right-5 top-5 size-4 shrink-0 transition-transform duration-200 md:relative md:right-0 md:top-0 md:hidden",
+                    "cs-challenge-chevron size-4 shrink-0 transition-transform duration-200 md:hidden",
                     problemOpen && "rotate-180"
                   )}
                   aria-hidden
@@ -70,12 +70,12 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
               <button
                 type="button"
                 onClick={() => setObjectiveOpen((o) => !o)}
-                className="cs-challenge-panel-title cs-challenge-panel-trigger group absolute inset-0 left-0 right-0 top-0 flex w-full cursor-pointer appearance-none flex-col items-stretch border-none bg-transparent p-0 text-left md:static md:flex-row md:pointer-events-none md:cursor-default"
+                className="cs-challenge-panel-title cs-challenge-panel-trigger group flex w-full cursor-pointer appearance-none items-center justify-between border-none bg-transparent p-0 text-left md:pointer-events-none md:cursor-default"
                 aria-expanded={objectiveOpen}
                 aria-controls="cs-challenge-objective-content"
                 id="cs-challenge-objective-trigger"
               >
-                <span className="flex flex-1 items-center gap-2 pl-5 pt-5 md:pl-0 md:pt-0 md:py-0">
+                <span className="flex flex-1 items-center gap-2 pl-0 pt-0 md:pl-0 md:pt-0 md:py-0">
                   <Goal
                     className="cs-challenge-icon cs-challenge-icon-objective"
                     aria-hidden
@@ -84,7 +84,7 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
                 </span>
                 <ChevronDown
                   className={cn(
-                    "cs-challenge-chevron absolute right-5 top-5 size-4 shrink-0 transition-transform duration-200 md:relative md:right-0 md:top-0 md:hidden",
+                    "cs-challenge-chevron size-4 shrink-0 transition-transform duration-200 md:hidden",
                     objectiveOpen && "rotate-180"
                   )}
                   aria-hidden

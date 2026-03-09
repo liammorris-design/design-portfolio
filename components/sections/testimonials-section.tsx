@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { MessageCircle, ArrowLeft, ArrowRight } from "lucide-react";
 import { useTheme } from "next-themes";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 
 const TESTIMONIALS = [
   {
@@ -89,6 +89,17 @@ export function TestimonialsSection() {
               <AnimatePresence initial={false} mode="popLayout">
                 <motion.div
                   key={active}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  dragMomentum={false}
+                  onDragEnd={(_, info: PanInfo) => {
+                    if (info.offset.x < -50) {
+                      goNext();
+                    } else if (info.offset.x > 50) {
+                      goPrev();
+                    }
+                  }}
                   initial={{
                     x: direction > 0 ? "100%" : "-100%",
                     opacity: 0,
