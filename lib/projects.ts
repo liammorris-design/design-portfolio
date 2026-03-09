@@ -5,7 +5,7 @@ export const PROJECTS = [
     title: "FX Trading Platform MVP",
     description:
       "Designed a 0-to-1 FX platform processing £1B+ in flow. Focused on transactional workflows and audit logging for compliance.",
-    image: "/project cover images/lloyds-bank-cover.png",
+    image: "/project cover images/lloyds-cover-2.png",
     tags: ["Enterprise", "Web App", "Commercial Banking"],
     requiresPassword: false,
     isComingSoon: false,
@@ -16,7 +16,7 @@ export const PROJECTS = [
     title: "Whitelabel B2B SaaS Platform",
     description:
       "Architected a Treasury-first banking engine with account ingestion and cashflow forecasting. Built for modular, multi-bank deployment.",
-    image: "/project cover images/coba-cover.png",
+    image: "/project cover images/coba-cover-2.png",
     tags: ["SaaS", "Web App", "Fintech B2B"],
     requiresPassword: false,
     isComingSoon: false,

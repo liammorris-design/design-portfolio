@@ -15,37 +15,37 @@ const SERVICES = [
     icon: Paintbrush,
     title: "System Design (UX/UI)",
     description:
-      "Creating easy-to-use interfaces for complex software and apps.",
+      "Designing clear, scalable interfaces for complex B2B platforms, financial workflows, and operational systems.",
   },
   {
     icon: Monitor,
     title: "Prototyping",
     description:
-      "Building clickable versions of your idea to test before full development.",
+      "Building high-fidelity interactive prototypes to validate product ideas and accelerate alignment between product, design, and engineering.",
   },
   {
     icon: Users,
     title: "Product Discovery",
     description:
-      "Talking to stakeholders and real users to make sure we're building the right features.",
+      "Working with stakeholders and users to define problems, validate opportunities, and shape the right product direction.",
   },
   {
     icon: Map,
     title: "Product Strategy",
     description:
-      "Planning what to build first to hit your business goals and save costs.",
+      "Defining product structure, information architecture, and feature priorities to support scalable platform growth.",
   },
   {
     icon: Rocket,
     title: "MVP Design",
     description:
-      "Building and launching the first version of your product from scratch.",
+      "Designing and launching 0→1 products, translating early product concepts into usable, production-ready software.",
   },
   {
     icon: Wrench,
     title: "Design-to-Code",
     description:
-      "Bridging the gap between Figma and production-ready code to accelerate delivery in high-velocity agile squads.",
+      "Bridging design and engineering through AI-assisted prototyping and production-ready UI code to accelerate delivery in agile teams.",
     isNew: true,
   },
 ];
@@ -56,7 +56,7 @@ const SHOW_SERVICE_IMAGES = false;
 export function ServicesSection() {
   return (
     <section id="services" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
+      <div className="section-frame px-5 py-10 md:px-20 md:py-10 md:py-20">
         <div className="mb-3 flex items-center gap-2">
           <Component className="size-4 shrink-0 text-muted-foreground dark:text-white" aria-hidden />
           <span className="font-mono text-sm font-medium uppercase tracking-wider text-muted-foreground">
@@ -80,8 +80,8 @@ export function ServicesSection() {
                 </Badge>
               )}
               <CardHeader className="flex flex-col gap-2">
-                <div className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:bg-background dark:shadow-none">
-                  <Icon className="size-[20px] text-muted-foreground dark:text-white" aria-hidden />
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:bg-white/[0.03] dark:shadow-none md:size-11">
+                  <Icon className="size-4 text-muted-foreground dark:text-white md:size-5" aria-hidden />
                 </div>
                 <h5 className="text-foreground">{title}</h5>
                 <CardDescription>

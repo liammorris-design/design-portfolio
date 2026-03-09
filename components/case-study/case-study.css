@@ -54,21 +54,47 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  background-color: var(--background);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 0.5px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 0.5px solid rgba(255, 255, 255, 0.2);
   box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.08),
-    0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: opacity 0.2s;
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 1px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+@media (max-width: 767px) {
+  [data-case-study] .cs-back {
+    left: calc(20px + var(--cs-padding-x));
+  }
 }
 
 .dark [data-case-study] .cs-back {
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.15);
+  background: rgba(30, 30, 30, 0.6);
 }
 
 [data-case-study] .cs-back:hover {
-  opacity: 0.9;
+  opacity: 0.98;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 12px 18px -4px rgba(0, 0, 0, 0.12),
+    0 5px 8px -3px rgba(0, 0, 0, 0.08),
+    0 0 1px 0 rgba(0, 0, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.dark [data-case-study] .cs-back:hover {
+  background: rgba(30, 30, 30, 0.8);
 }
 
 /* Hero content wrapper */
@@ -82,6 +108,12 @@
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  [data-case-study] .cs-hero-content {
+    padding-bottom: 80px;
+  }
 }
 
 /* Logo */
@@ -129,6 +161,20 @@
   justify-content: center;
   gap: var(--cs-badge-gap);
   margin-bottom: var(--cs-badges-media);
+}
+
+@media (max-width: 767px) {
+  [data-case-study] .cs-hero-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+  [data-case-study] .cs-heading,
+  [data-case-study] .cs-subheading {
+    text-align: left;
+  }
+  [data-case-study] .cs-tags {
+    justify-content: flex-start;
+  }
 }
 
 /* Tag badges – pill style.
@@ -207,6 +253,14 @@
   color: var(--cs-text);
   margin: 0;
   width: 100%;
+}
+
+@media (max-width: 767px) {
+  [data-case-study] .cs-overview-title {
+    font-size: 28px !important;
+    line-height: 34px !important;
+    letter-spacing: -1.12px !important;
+  }
 }
 
 [data-case-study] .cs-overview-desc {
@@ -350,6 +404,15 @@
   gap: 0.5rem;
   color: var(--cs-text);
   margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+
+[data-case-study] .cs-challenge-panel-trigger {
+  justify-content: space-between;
+}
+
+[data-case-study] .cs-challenge-chevron {
+  color: var(--muted-foreground);
 }
 
 [data-case-study] .cs-challenge-icon {
@@ -475,7 +538,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: var(--radius-card);
+  border-radius: 8px;
   background-color: var(--cs-media-bg);
 }
 
@@ -523,11 +586,19 @@
   width: 100%;
 }
 
+[data-case-study] .cs-solution-image-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  align-items: start;
+  width: 100%;
+}
+
 [data-case-study] .cs-solution-image-grid-item {
   width: 100%;
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-card);
+  border-radius: 8px;
   background-color: var(--cs-media-bg);
 }
 
@@ -798,15 +869,15 @@
   }
 }
 
-/* Media – 40px horizontal padding (narrower than hero content's 80px) */
+/* Media – full width of hero content (respects section 20px padding), locked aspect ratio */
 [data-case-study] .cs-media {
-  width: calc(100% + 2 * (var(--cs-padding-x) - var(--cs-media-padding-x)));
-  max-width: calc(1080px + 2 * (var(--cs-padding-x) - var(--cs-media-padding-x)));
-  margin-left: calc(var(--cs-media-padding-x) - var(--cs-padding-x));
-  margin-right: calc(var(--cs-media-padding-x) - var(--cs-padding-x));
+  width: 100%;
+  max-width: 1080px;
+  margin-left: 0;
+  margin-right: 0;
   aspect-ratio: 16 / 10;
   background-color: var(--cs-media-bg);
   overflow: hidden;
   position: relative;
-  border-radius: var(--radius-card);
+  border-radius: 8px;
 }

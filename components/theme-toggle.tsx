@@ -26,7 +26,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <div
-        className="inline-flex h-8 shrink-0 items-center justify-center rounded-full border border-border bg-transparent px-3"
+        className="inline-flex h-10 shrink-0 items-center justify-center rounded-full border border-border bg-transparent px-3"
         aria-hidden
       />
     );
@@ -45,7 +45,12 @@ export function ThemeToggle() {
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full border border-border bg-transparent px-3 text-xs font-medium text-foreground transition-colors hover:border-muted-foreground/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className={
+          "inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-border px-3 text-xs font-medium text-foreground transition-colors hover:border-muted-foreground/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring" +
+          (resolvedTheme === "light"
+            ? " bg-white hover:bg-accent hover:text-accent-foreground"
+            : " bg-transparent")
+        }
       >
         <span className="flex items-center justify-center">
           {currentMode === "system" ? (
@@ -61,7 +66,7 @@ export function ThemeToggle() {
         <div
           role="menu"
           aria-label="Theme"
-          className="absolute right-0 z-50 mt-2 w-40 rounded-md border bg-popover text-popover-foreground shadow-md"
+          className="absolute left-0 bottom-full z-50 mb-2 w-40 rounded-md border bg-popover text-popover-foreground shadow-md"
         >
           <button
             type="button"

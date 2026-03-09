@@ -13,7 +13,7 @@ const ASPECT_RATIO = 16 / 10;
 export function SolutionSection({ content }: SolutionSectionProps) {
   return (
     <section className="cs-solution">
-      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20">
+      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20">
         <div className="cs-solution-inner">
           <div className="cs-solution-label-wrap">
             <TrendingUp
@@ -64,11 +64,18 @@ export function SolutionSection({ content }: SolutionSectionProps) {
                         key={i}
                         className="cs-solution-image-wrap cs-solution-image-grid-item"
                       >
-                        <img
-                          src={src}
-                          alt=""
-                          className="cs-solution-image-grid-img"
-                        />
+                        <img src={src} alt="" className="cs-solution-image-grid-img" />
+                      </div>
+                    ))}
+                  </div>
+                ) : item.layout === "grid" ? (
+                  <div className="cs-solution-image-grid cs-solution-image-grid-2x2">
+                    {item.images.slice(0, 4).map((src, i) => (
+                      <div
+                        key={i}
+                        className="cs-solution-image-wrap cs-solution-image-grid-item"
+                      >
+                        <img src={src} alt="" className="cs-solution-image-grid-img" />
                       </div>
                     ))}
                   </div>
@@ -86,20 +93,53 @@ export function SolutionSection({ content }: SolutionSectionProps) {
                         className="cs-solution-image-main-img"
                       />
                     </div>
-                    <div className="cs-solution-image-grid">
-                      {item.images.slice(1, 4).map((src, i) => (
-                        <div
-                          key={i}
-                          className="cs-solution-image-wrap cs-solution-image-grid-item"
-                        >
-                          <img
-                            src={src}
-                            alt=""
-                            className="cs-solution-image-grid-img"
-                          />
+                    {item.images.length - 1 === 4 ? (
+                      <>
+                        <div className="cs-solution-image-grid cs-solution-image-grid-2x2">
+                          {item.images.slice(1, 3).map((src, i) => (
+                            <div
+                              key={i}
+                              className="cs-solution-image-wrap cs-solution-image-grid-item"
+                            >
+                              <img
+                                src={src}
+                                alt=""
+                                className="cs-solution-image-grid-img"
+                              />
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                        <div className="cs-solution-image-grid">
+                          {item.images.slice(3).map((src, i) => (
+                            <div
+                              key={i}
+                              className="cs-solution-image-wrap cs-solution-image-grid-item"
+                            >
+                              <img
+                                src={src}
+                                alt=""
+                                className="cs-solution-image-grid-img"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="cs-solution-image-grid">
+                        {item.images.slice(1).map((src, i) => (
+                          <div
+                            key={i}
+                            className="cs-solution-image-wrap cs-solution-image-grid-item"
+                          >
+                            <img
+                              src={src}
+                              alt=""
+                              className="cs-solution-image-grid-img"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

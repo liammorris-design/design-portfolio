@@ -47,7 +47,7 @@ const FAQ_ITEMS = [
 export function FAQsSection() {
   return (
     <section id="faqs" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
+      <div className="section-frame px-5 py-10 md:px-20 md:py-5 md:py-20">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-12 text-center">
           {/* Section title */}
           <div>
@@ -70,8 +70,8 @@ export function FAQsSection() {
                 value={`item-${i}`}
                 className="border-border"
               >
-                <AccordionTrigger className="py-5 text-center text-foreground font-semibold hover:no-underline hover:text-foreground/80">
-                  <span className="flex flex-wrap items-center gap-2">
+                <AccordionTrigger className="py-5 text-left text-foreground font-semibold hover:no-underline hover:text-foreground/80 md:text-center">
+                  <span className="inline-flex flex-nowrap items-center gap-2">
                     {question}
                     {isNew && (
                       <Badge className="shrink-0 font-mono text-[10px] font-medium uppercase tracking-[1px] bg-emerald-100 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-800 dark:bg-[#003E30] dark:text-[#bef264] dark:hover:bg-[#003E30] dark:hover:text-[#bef264]">

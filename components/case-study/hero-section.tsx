@@ -43,7 +43,21 @@ export function HeroSection({ content }: HeroSectionProps) {
         </div>
 
         <div className="cs-media relative">
-          {content.heroVideo ? (
+          {content.heroVideo && content.heroVideoAutoplay ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster={content.heroImage}
+              className="absolute inset-0 size-full object-cover"
+              aria-label="Case study hero video"
+            >
+              {content.heroVideo.map((source) => (
+                <source key={source.src} src={source.src} type={source.type} />
+              ))}
+            </video>
+          ) : content.heroVideo ? (
             <HeroVideoPlayer
               sources={content.heroVideo}
               poster={content.heroImage}

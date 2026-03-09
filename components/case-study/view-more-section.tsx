@@ -40,13 +40,13 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
         onOpenChange={setPasswordDialogOpen}
         projectSlug={passwordProjectSlug}
       />
-      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20">
+      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20">
         <h2 className="cs-view-more-heading text-center">View more projects</h2>
         <div className="cs-view-more-grid">
           {otherProjects.map((proj) => {
             const cardContent = (
               <>
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-card)] bg-muted">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[8px] bg-muted">
                   <Image
                     src={proj.image}
                     alt=""

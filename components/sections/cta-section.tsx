@@ -25,10 +25,7 @@ export function CTASection() {
 
   return (
     <section id="cta" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div
-        className="section-frame px-20"
-        style={{ paddingTop: 80, paddingBottom: 80 }}
-      >
+      <div className="section-frame px-5 py-10 md:px-20 md:py-20">
         <div className="grid gap-8 md:grid-cols-[1fr_1fr] md:gap-x-20 md:gap-y-[120px]">
           {/* Left: Contact info */}
           <div className="flex flex-col gap-6">
@@ -48,23 +45,17 @@ export function CTASection() {
             <div className="flex w-full flex-row gap-3">
               <Button
                 size="lg"
-                className="group has-[>svg]:px-6 flex items-start justify-center overflow-hidden py-0 w-fit px-6 rounded-full bg-zinc-900 text-base leading-6 text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-white/90"
+                className="has-[>svg]:px-6 w-fit px-6 rounded-full text-base leading-6"
                 asChild
               >
                 <a
                   href="https://calendly.com/liammorris/30min"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="gap-2 text-base leading-6"
+                  className="inline-flex items-center gap-2 text-base leading-6"
                 >
-                  <span className="flex w-full flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
-                    <span className="flex h-11 min-h-11 shrink-0 items-center justify-center">
-                      Book an intro call
-                    </span>
-                    <span className="flex h-11 min-h-11 shrink-0 items-center justify-center">
-                      <ArrowUpRight className="size-4" />
-                    </span>
-                  </span>
+                  Book an intro call
+                  <ArrowUpRight className="size-4" />
                 </a>
               </Button>
               <Button
@@ -139,7 +130,7 @@ export function CTASection() {
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="mt-2 w-full rounded-full bg-zinc-900 text-base text-white hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-white/90"
+                className="mt-2 w-full rounded-full text-base"
               >
                 {isSubmitting ? "Sending…" : "Send"}
               </Button>

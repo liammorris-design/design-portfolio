@@ -407,6 +407,8 @@
 /* Services grid: single 1px stroke between tiles (each line drawn once) */
 .services-tile-grid {
   border: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   border-radius: var(--radius-card);
   overflow: hidden;
 }
@@ -507,37 +509,37 @@ h6 {
   html body h1,
   body h1,
   h1 {
-    font-size: 48px !important;
-    line-height: 48px !important;
-    letter-spacing: -2.4px !important;
+    font-size: 40px !important;
+    line-height: 44px !important;
+    letter-spacing: -2px !important;
   }
   html body h2,
   body h2,
   h2 {
-    font-size: 32px !important;
-    line-height: 40px !important;
-    letter-spacing: -1.28px !important;
+    font-size: 28px !important;
+    line-height: 34px !important;
+    letter-spacing: -1.12px !important;
   }
   html body h3,
   body h3,
   h3 {
-    font-size: 24px !important;
-    line-height: 30px !important;
-    letter-spacing: -0.72px !important;
+    font-size: 22px !important;
+    line-height: 28px !important;
+    letter-spacing: -0.66px !important;
   }
   html body h4,
   body h4,
   h4 {
-    font-size: 20px !important;
-    line-height: 26px !important;
-    letter-spacing: -0.4px !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+    letter-spacing: -0.36px !important;
   }
   html body h5,
   body h5,
   h5 {
-    font-size: 18px !important;
-    line-height: 24px !important;
-    letter-spacing: -0.18px !important;
+    font-size: 16px !important;
+    line-height: 22px !important;
+    letter-spacing: -0.16px !important;
   }
 }
 

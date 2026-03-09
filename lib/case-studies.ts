@@ -13,6 +13,8 @@ export type CaseStudyHeroContent = {
   heroImage: string;
   /** Optional video sources; when defined, video is shown with heroImage as poster */
   heroVideo?: readonly { src: string; type: string }[];
+  /** When true with heroVideo, video autoplays muted and loops with no controls */
+  heroVideoAutoplay?: boolean;
 };
 
 export type CaseStudyOverviewProjectDetails = {
@@ -40,8 +42,8 @@ export type CaseStudyChallengeContent = {
 export type CaseStudySolutionItem = {
   title?: string;
   description?: string;
-  /** 'single' = 1 full-width image; 'featured' = 1 large + 3 smaller; 'double' = 2 images side by side */
-  layout: "single" | "featured" | "double";
+  /** 'single' = 1 full-width image; 'featured' = 1 large + 3 smaller; 'double' = 2 images side by side; 'grid' = 2x2 image grid */
+  layout: "single" | "featured" | "double" | "grid";
   images: readonly string[];
 };
 
@@ -85,6 +87,8 @@ const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
       "Designing a digital-first FX trading experience to replace high-friction manual booking and legacy portals for the largest SME business bank in the UK.",
     tags: ["Enterprise", "Web App", "Commercial Banking", "B2B"],
     heroImage: "/Lloyds Bank Project/lloydsbank-hero.png",
+    heroVideo: [{ src: "/lloyds-bank-hero-video.mp4", type: "video/mp4" }],
+    heroVideoAutoplay: true,
   },
   "project-2": {
     logo: "COBA TECHNOLOGY",
@@ -99,12 +103,14 @@ const CASE_STUDIES: Partial<Record<ProjectSlug, CaseStudyHeroContent>> = {
   familypay: {
     logo: "FAMILYPAY",
     logoDefaultSvg: "/familypage-logo-light-mode.png",
-    logoLightSvg: "/familypage-logo-dark-mode.png",
+    logoLightSvg: "/familypay-logo-dark-mode.png",
     heading: "Redefining money movement for closed-currency markets",
     subHeading:
       "Designing a multi-currency digital wallet and spending infrastructure to bridge the gap between international expats and their families abroad.",
     tags: ["Fintech", "Mobile App", "B2C", "Money Exchange"],
     heroImage: "/FamilyPay/Hero.png",
+    heroVideo: [{ src: "/family-pay-top-up-video.mp4", type: "video/mp4" }],
+    heroVideoAutoplay: true,
   },
   "an-post-money": {
     logo: "AN POST MONEY",
@@ -184,7 +190,7 @@ const CHALLENGE_CONTENT: Partial<
   Record<ProjectSlug, CaseStudyChallengeContent>
 > = {
   "lloyds-bank-mvp": {
-    heading: "Fighting back against Fintech agility.",
+    heading: "Reclaiming the Digital Edge: Modernising Institutional FX",
     problem:
       "Lloyds was losing market share to fintechs offering digital-first FX. SME customers faced fragmented legacy portals and poor UX, driving many to manual phone-in trades. Reliance on manual bookings led to slow fulfilment and costly trade reversals.",
     objective: {
@@ -262,34 +268,59 @@ const SOLUTION_CONTENT: Partial<
   Record<ProjectSlug, CaseStudySolutionContent>
 > = {
   "lloyds-bank-mvp": {
-    heading: "A lean, FX banking MVP built for trust.",
-    headingImage: "/Lloyds Bank Project/Log in.png",
+    heading: "A Secure Banking MVP Engineered for Trust.",
+    headingImage: "/lloyds-bank-images/login.png",
     items: [
+      {
+        title: "Dynamic Command Centre",
+        description:
+          "Monitor live currency exposure and team-wide interactions through a fully customisable, widget-based interface.",
+        layout: "single",
+        images: ["/lloyds-bank-images/dashboard.png"],
+      },
       {
         title: "Precision Trade Execution",
         description:
           "An FX trade module and 3-step trade flow with real-time rates and digital confirmations to eliminate manual booking errors and pricing uncertainty.",
         layout: "featured",
         images: [
-          "/Lloyds Bank Project/Foreign Exchange.png",
-          "/Lloyds Bank Project/Exchange 1-3.png",
-          "/Lloyds Bank Project/Exchange 2-3.png",
-          "/Lloyds Bank Project/Exchange 3-3.png",
+          "/lloyds-bank-images/foreign-exchange.png",
+          "/lloyds-bank-images/new-quote.png",
+          "/lloyds-bank-images/confirm-quote.png",
+          "/lloyds-bank-images/confirmation.png",
         ],
       },
       {
-        title: "Customisable Dashboard",
+        title: "Institutional Governance & Access Control",
         description:
-          "A platform landing screen providing an immediate snapshot of currency positions and recent multi-user activity via customisable widgets, fully editable.",
-        layout: "single",
-        images: ["/Lloyds Bank Project/Dashboard.png"],
+          "Strengthening security through granular role-based permissions, multi-layer authentication, and comprehensive audit transparency.",
+        layout: "grid",
+        images: [
+          "/lloyds-bank-images/mfa.png",
+          "/lloyds-bank-images/otp.png",
+          "/lloyds-bank-images/role-based-access.png",
+          "/lloyds-bank-images/audit-activity.png",
+        ],
       },
       {
         title: "Mobile-Responsive Trading",
         description:
           "Optimised layouts for secure, on-the-go execution, ensuring treasurers can manage exposure without being tethered to a desktop.",
         layout: "single",
-        images: ["/Lloyds Bank Project/Mobile.png"],
+        images: ["/lloyds-bank-images/mobile.png"],
+      },
+      {
+        title: "Market-First: Automated Exposure & Hedge Execution",
+        description:
+          "Eliminating manual data entry by synchronising ERP journals to provide a real-time view of payables and receivables for instant, high-volume hedging.",
+        layout: "featured",
+        images: [
+          "/lloyds-bank-images/cash-flow.png",
+          "/lloyds-bank-images/explainer.png",
+          "/lloyds-bank-images/connect-asp.png",
+          "/lloyds-bank-images/transactions.png",
+          "/lloyds-bank-images/navigation.png",
+        ],
       },
     ],
   },
@@ -342,7 +373,7 @@ const SOLUTION_CONTENT: Partial<
         description:
           "The core of the app is a central hub where the primary account holder can allocate funds to family members instantaneously. I designed a comprehensive card management suite where users can toggle between virtual and physical cards, set granular spending rules for children, and monitor global transactions via real-time alerts.",
         layout: "single",
-        images: ["/FamilyPay/Cards.png"],
+        images: ["/FamilyPay/cards-v2.png"],
       },
       {
         title: "Multi-Currency Exchange",

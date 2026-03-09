@@ -8,7 +8,7 @@ type ResultsSectionProps = {
 export function ResultsSection({ content }: ResultsSectionProps) {
   return (
     <section className="cs-results">
-      <div className="section-frame px-[var(--cs-padding-x)] py-5 md:py-20 text-center">
+      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20 text-center">
         <div className="cs-results-inner">
           <div className="mb-3 flex items-center justify-center gap-2">
             <Trophy

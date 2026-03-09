@@ -68,7 +68,7 @@ export function TestimonialsSection() {
 
   return (
     <section id="testimonials" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
+      <div className="section-frame px-5 py-10 md:px-20 md:py-5 md:py-20">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           {/* Left: Section title - max 315px */}
           <div className="max-w-[315px]">
@@ -85,7 +85,7 @@ export function TestimonialsSection() {
 
           {/* Right: Testimonial card - Figma design */}
           <div className="flex flex-col gap-8">
-            <div className="relative h-[560px] min-h-[560px] w-full overflow-hidden">
+            <div className="relative h-[520px] min-h-[520px] w-full overflow-hidden md:h-[560px] md:min-h-[560px]">
               <AnimatePresence initial={false} mode="popLayout">
                 <motion.div
                   key={active}
@@ -103,7 +103,7 @@ export function TestimonialsSection() {
                     opacity: 0,
                     transition: { duration: 0.3, ease: "easeIn" },
                   }}
-                  className="absolute inset-0 flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-white p-[48px] dark:bg-white/[0.03]"
+                  className="absolute inset-0 flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-white p-5 dark:bg-white/[0.03] md:p-[48px]"
                 >
                   <div className="mb-6 flex shrink-0 items-start gap-4">
                     <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
@@ -128,15 +128,15 @@ export function TestimonialsSection() {
                       </p>
                     </div>
                   </div>
-                  <blockquote className="mb-6 flex flex-1 flex-col gap-4">
+                  <blockquote className="mb-4 flex flex-1 flex-col gap-4 md:mb-6">
                     <span className="text-2xl font-semibold leading-tight tracking-[-1px] text-zinc-900 dark:text-white md:text-[28px]">
                       &ldquo;{t.quote}&rdquo;
                     </span>
-                    <p className="flex-1 text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
+                    <p className="min-h-0 flex-1 text-base leading-relaxed text-zinc-600 dark:text-zinc-300 md:flex-1">
                       {t.text}
                     </p>
                   </blockquote>
-                  <div className="mt-auto h-8 shrink-0">
+                  <div className="mt-2 shrink-0 md:mt-auto md:h-8">
                     {t.companyLogo === "lloyds" ? (
                       <Image
                         src={lloydsSrc}

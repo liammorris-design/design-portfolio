@@ -9,6 +9,7 @@ import { WorkCarousel } from "@/components/work-carousel";
 import { ServicesSection } from "@/components/sections/services-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { FAQsSection } from "@/components/sections/faqs-section";
+import { AboutCopy } from "@/components/about-copy";
 
 const RIBBON_ITEMS = [
   { id: "1" },
@@ -37,8 +38,8 @@ export default function Home() {
         className="flex min-h-[75vh] flex-1 flex-col"
       >
         <div className="section-frame hero-with-grid relative flex flex-1 flex-col items-center justify-center px-5 py-10 md:px-20 md:py-30">
-          <div className="flex w-full max-w-[48rem] flex-col items-center gap-8 text-center">
-            {/* Avatar 40px + Available from Q1 2026 to the right */}
+          <div className="flex w-full max-w-[42rem] flex-col items-center gap-8 text-center">
+            {/* Avatar 40px + Available Q1 2026 to the right */}
             <div className="hero-reveal hero-reveal-delay-5 flex items-center justify-center gap-3">
               <div className="relative inline-block size-10 shrink-0">
                 <div className="size-10 overflow-hidden rounded-full ring-2 ring-border">
@@ -58,26 +59,24 @@ export default function Home() {
                 />
               </div>
               <span className="font-mono text-xs font-medium uppercase text-muted-foreground">
-                Available from Q1 2026
+                Available Q1 2026
               </span>
             </div>
 
             <h1 className="hero-reveal hero-reveal-delay-1">
-              Product Design Expert
-              <br />
-              for AI, Fintech & SaaS.
+              Senior Product Designer for Fintech & Complex Platforms.
             </h1>
 
-            {/* Subheader: 20px, 36px line height, two lines */}
-            <p className="hero-reveal hero-reveal-delay-4 max-w-2xl text-[20px] leading-[36px] text-muted-foreground">
-              I bridge product strategy with production-ready design, helping teams navigate ambiguity and ship complex products at scale.
+            {/* Subheader: smaller on mobile, 20px/36px on desktop */}
+            <p className="hero-reveal hero-reveal-delay-4 max-w-2xl text-base leading-7 text-muted-foreground md:text-[20px] md:leading-[36px]">
+              I design financial infrastructure and B2B SaaS products, turning complex systems into clear, reliable user experiences.
             </p>
 
-            {/* CTAs - sentence case, 16px font */}
-            <div className="hero-reveal hero-reveal-delay-4 flex flex-wrap items-center justify-center gap-3 pt-2">
+            {/* CTAs - Book an intro natural width; Recent work matches that width on mobile */}
+            <div className="hero-reveal hero-reveal-delay-4 inline-flex flex-col items-stretch gap-3 pt-2 sm:flex-row sm:flex-wrap sm:justify-center sm:items-center">
               <Button
                 size="lg"
-                className="group flex items-start justify-center overflow-hidden py-0 text-base"
+                className="flex h-11 min-w-0 items-center justify-center gap-2 py-0 text-base"
                 asChild
               >
                 <a
@@ -86,17 +85,11 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="gap-2"
                 >
-                  <span className="flex w-full flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
-                    <span className="flex h-11 min-h-11 shrink-0 items-center justify-center">
-                      Book an intro call
-                    </span>
-                    <span className="flex h-11 min-h-11 shrink-0 items-center justify-center">
-                      <ArrowUpRight className="size-4" />
-                    </span>
-                  </span>
+                  Book an intro call
+                  <ArrowUpRight className="size-4" />
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="text-base" asChild>
+              <Button size="lg" variant="outline" className="h-11 min-w-full text-base sm:min-w-0" asChild>
                 <ScrollToSectionLink href="#work">Recent work</ScrollToSectionLink>
               </Button>
             </div>
@@ -163,7 +156,7 @@ export default function Home() {
 
         {/* Work */}
         <section id="work" className="scroll-mt-14 w-full overflow-x-visible">
-          <div className="flex flex-col items-center overflow-x-visible px-5 py-5 md:px-20 md:py-20 text-center">
+          <div className="flex flex-col items-center overflow-x-visible px-5 py-10 text-center md:px-20 md:py-20">
             <div className="mb-3 flex items-center justify-center gap-2">
             <Blocks className="size-4 shrink-0 text-muted-foreground" aria-hidden />
             <span className="font-mono text-sm font-medium uppercase tracking-section-label text-muted-foreground">
@@ -186,20 +179,20 @@ export default function Home() {
 
       {/* About: two-column bio, 1200px max, same spacing as Work */}
       <section id="about" className="scroll-mt-14 w-full border-b border-border-subtle">
-        <div className="section-frame px-5 py-5 md:px-20 md:py-5 md:py-20">
-          <div className="mb-3 flex items-center justify-center gap-2">
+        <div className="section-frame px-5 py-10 md:px-20 md:py-5 md:py-20">
+          <div className="mb-3 flex items-center justify-start gap-2 md:justify-center">
             <User className="size-4 shrink-0 text-muted-foreground" aria-hidden />
             <span className="font-mono text-sm font-medium uppercase tracking-section-label text-muted-foreground">
               About
             </span>
           </div>
-          <h2 className="mb-8 text-center text-foreground">
+          <h2 className="mb-8 text-left text-foreground md:text-center">
             👋 Hi, I&apos;m Liam. Your strategic partner in design.
           </h2>
 
           <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_1.5fr] md:gap-x-12 md:gap-y-20">
-            {/* Left: portrait */}
-            <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-[var(--radius-card)] border border-border bg-muted md:max-w-none">
+            {/* Left: portrait - smaller on mobile, hidden on mobile */}
+            <div className="relative mx-auto hidden aspect-square w-full max-w-[280px] overflow-hidden rounded-[var(--radius-card)] border border-border bg-muted md:mx-0 md:block md:max-w-[320px]">
               <img
                 src="/profile-pic.JPG"
                 alt="Liam Morris"
@@ -209,15 +202,7 @@ export default function Home() {
 
             {/* Right: copy + links */}
             <div className="flex flex-col">
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                I&apos;m a Senior Product Designer with 12 years of experience in the London tech scene, specialising in Fintech and Treasury infrastructure. I bridge the gap between product strategy and production-ready UI, helping teams launch world-class software within agile, cross-functional squads.
-              </p>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                Having delivered high-stakes UX/UI for Tier 1 enterprise banks and early-stage startups alike, I thrive in the ambiguity of 0→1 development. My approach combines a founder&apos;s focus on speed with a deep understanding of complex money movement and compliance, ensuring every design is secure, scalable, and technically feasible.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Specialising in Treasury and Money Movement infrastructure, I have a proven track record of designing secure, compliant B2B financial flows. From architecting banking engines for Tier 1 institutions to building lean fintech prototypes, I thrive in squad-based environments where I lead the full product lifecycle from discovery to ship.
-              </p>
+              <AboutCopy />
             </div>
           </div>
         </div>
