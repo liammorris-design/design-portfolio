@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AnimatePresence, motion, type PanInfo } from "framer-motion";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { CaseStudySolutionContent } from "@/lib/case-studies";
 
 type SolutionSectionProps = {
@@ -29,7 +28,6 @@ export function SolutionSection({ content }: SolutionSectionProps) {
   ];
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [lightboxDirection, setLightboxDirection] = useState(1);
 
   const isLightboxOpen = lightboxIndex !== null && totalImages > 0;
 
@@ -46,7 +44,6 @@ export function SolutionSection({ content }: SolutionSectionProps) {
   const goToImage = (index: number) => {
     if (!isLightboxOpen || totalImages === 0 || lightboxIndex === null) return;
     const normalised = ((index % totalImages) + totalImages) % totalImages;
-    setLightboxDirection(index > lightboxIndex ? 1 : -1);
     setLightboxIndex(normalised);
   };
 
@@ -221,67 +218,58 @@ export function SolutionSection({ content }: SolutionSectionProps) {
         </div>
       </div>
 
-      <AnimatePresence>
-        {isLightboxOpen && currentImageSrc && (
-          <motion.div
-            className="fixed inset-0 z-50 bg-black/80 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeLightbox}
-          >
-            <div className="flex h-full w-full items-center justify-center p-4">
-              <motion.div
-                key={lightboxIndex ?? 0}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                dragMomentum={false}
-                onDragEnd={(_, info: PanInfo) => {
-                  if (info.offset.x < -50) {
-                    goNextImage();
-                  } else if (info.offset.x > 50) {
-                    goPrevImage();
-                  }
-                }}
-                initial={{
-                  x: lightboxDirection > 0 ? 100 : -100,
-                  opacity: 0,
-                }}
-                animate={{
-                  x: 0,
-                  opacity: 1,
-                  transition: { duration: 0.25, ease: "easeOut" },
-                }}
-                exit={{
-                  x: lightboxDirection > 0 ? -100 : 100,
-                  opacity: 0,
-                  transition: { duration: 0.2, ease: "easeIn" },
-                }}
-                className="relative h-full w-full max-w-md overflow-hidden rounded-[var(--radius-card)] bg-background"
-                onClick={(event) => event.stopPropagation()}
+      {isLightboxOpen && currentImageSrc && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 md:hidden"
+          onClick={closeLightbox}
+        >
+          <div className="flex h-full w-full items-center justify-center p-4">
+            <div
+              className="relative flex h-full w-full max-w-md flex-col overflow-auto rounded-[var(--radius-card)] bg-background"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/70 text-white"
+                onClick={closeLightbox}
+                aria-label="Close image viewer"
               >
-                <button
-                  type="button"
-                  className="absolute right-3 top-3 z-10 rounded-full bg-black/60 px-3 py-1 text-xs font-medium uppercase tracking-wide text-white"
-                  onClick={closeLightbox}
-                >
-                  Close
-                </button>
-                <div className="relative h-full w-full">
-                  <Image
-                    src={currentImageSrc}
-                    alt=""
-                    fill
-                    className="object-contain"
-                    sizes="100vw"
-                  />
+                <X className="size-5" aria-hidden />
+              </button>
+              <div className="relative flex h-full w-full items-center justify-center">
+                <img
+                  src={currentImageSrc}
+                  alt=""
+                  className="max-h-[90vh] w-auto max-w-full object-contain"
+                />
+              </div>
+              {totalImages > 1 && lightboxIndex !== null && (
+                <div className="pointer-events-auto absolute inset-x-0 bottom-4 flex items-center justify-center gap-4 px-4">
+                  <button
+                    type="button"
+                    onClick={goPrevImage}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-black/70 text-white"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="size-5" aria-hidden />
+                  </button>
+                  <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white">
+                    {lightboxIndex + 1} / {totalImages}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={goNextImage}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-black/70 text-white"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="size-5" aria-hidden />
+                  </button>
                 </div>
-              </motion.div>
+              )}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

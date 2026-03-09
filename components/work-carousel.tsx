@@ -8,12 +8,12 @@ import { PROJECTS } from "@/lib/projects";
 import { PasswordDialog } from "@/components/password-dialog";
 import { Badge } from "@/components/ui/badge";
 
-/** Landing order: Lloyds, FamilyPay, then An Post + CoBa side by side. */
+/** Landing order: Lloyds, CoBa, then FamilyPay + An Post side by side. */
 const LANDING_ORDER: (typeof PROJECTS)[number]["slug"][] = [
   "lloyds-bank-mvp",
+  "project-2",
   "familypay",
   "an-post-money",
-  "project-2",
 ];
 
 export function WorkCarousel() {

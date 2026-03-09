@@ -22,9 +22,11 @@ export function CaseStudyLogo({
     setMounted(true);
   }, []);
 
-  if (logoDefaultSvg && logoLightSvg && mounted) {
-    const src = resolvedTheme === "dark" ? logoLightSvg : logoDefaultSvg;
+  if (logoDefaultSvg) {
+    const isDark = mounted && resolvedTheme === "dark";
+    const src = isDark && logoLightSvg ? logoLightSvg : logoDefaultSvg;
     const isAnPost = logoDefaultSvg.toLowerCase().includes("an-post");
+
     return (
       <Image
         src={src}
@@ -32,6 +34,8 @@ export function CaseStudyLogo({
         width={116}
         height={32}
         className={`cs-logo cs-logo-img${isAnPost ? " cs-logo-img--anpost" : ""}`}
+        priority
+        sizes="116px"
       />
     );
   }
