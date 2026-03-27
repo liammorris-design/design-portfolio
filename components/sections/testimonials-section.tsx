@@ -67,24 +67,19 @@ export function TestimonialsSection() {
   }, []);
 
   return (
-    <section id="testimonials" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-5 py-10 md:px-20 md:py-5 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-          {/* Left: Section title - max 315px */}
-          <div className="max-w-[315px]">
-            <div className="mb-3 flex items-center gap-2">
-              <MessageCircle className="size-4 shrink-0 text-muted-foreground" aria-hidden />
-              <span className="font-mono text-sm font-medium uppercase tracking-section-label text-muted-foreground">
-                Testimonials
-              </span>
-            </div>
-            <h2 className="text-foreground">
-              What clients have said.
-            </h2>
+    <section id="testimonials" className="page-section scroll-mt-24 bg-background">
+      <div className="grid min-w-0 gap-12 lg:grid-cols-2 lg:items-start">
+        <div className="max-w-[315px]">
+          <div className="mb-3 flex items-center gap-2">
+            <MessageCircle className="size-4 shrink-0 text-copy-tertiary" aria-hidden />
+            <span className="font-mono text-sm font-medium uppercase tracking-section-label text-copy-tertiary">
+              Testimonials
+            </span>
           </div>
+          <h2 className="text-copy-primary">What clients have said.</h2>
+        </div>
 
-          {/* Right: Testimonial card - Figma design */}
-          <div className="flex flex-col gap-8">
+        <div className="flex min-w-0 flex-col gap-8">
             <div className="relative h-[520px] min-h-[520px] w-full overflow-hidden md:h-[560px] md:min-h-[560px]">
               <AnimatePresence initial={false} mode="popLayout">
                 <motion.div
@@ -114,10 +109,10 @@ export function TestimonialsSection() {
                     opacity: 0,
                     transition: { duration: 0.3, ease: "easeIn" },
                   }}
-                  className="absolute inset-0 flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-white p-5 dark:bg-white/[0.03] md:p-[48px]"
+                  className="absolute inset-0 flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-border bg-card p-5 md:p-[48px]"
                 >
                   <div className="mb-6 flex shrink-0 items-start gap-4">
-                    <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
+                    <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted">
                       {t.avatar ? (
                         <Image
                           src={t.avatar}
@@ -127,23 +122,23 @@ export function TestimonialsSection() {
                           className="size-full object-cover"
                         />
                       ) : (
-                        <span className="text-zinc-500 dark:text-zinc-400">?</span>
+                        <span className="text-copy-tertiary">?</span>
                       )}
                     </div>
                     <div>
-                      <p className="text-lg font-semibold text-zinc-900 dark:text-white">
+                      <p className="text-lg font-semibold text-copy-primary">
                         {t.name}
                       </p>
-                      <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                      <p className="text-sm text-copy-tertiary">
                         {t.title}
                       </p>
                     </div>
                   </div>
                   <blockquote className="mb-4 flex flex-1 flex-col gap-4 md:mb-6">
-                    <span className="text-2xl font-semibold leading-tight tracking-[-1px] text-zinc-900 dark:text-white md:text-[28px]">
+                    <span className="text-2xl font-semibold leading-tight tracking-[-1px] text-copy-primary md:text-[28px]">
                       &ldquo;{t.quote}&rdquo;
                     </span>
-                    <p className="min-h-0 flex-1 text-base leading-relaxed text-zinc-600 dark:text-zinc-300 md:flex-1">
+                    <p className="min-h-0 flex-1 text-base leading-relaxed text-copy-secondary md:flex-1">
                       {t.text}
                     </p>
                   </blockquote>
@@ -207,7 +202,7 @@ export function TestimonialsSection() {
                 <button
                   type="button"
                   onClick={goPrev}
-                  className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-white text-foreground shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-background dark:shadow-none"
+                  className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-copy-primary shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:shadow-none"
                   aria-label="Previous testimonial"
                 >
                   <ArrowLeft className="size-4" />
@@ -215,7 +210,7 @@ export function TestimonialsSection() {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-white text-foreground shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:bg-background dark:shadow-none"
+                  className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-copy-primary shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-colors hover:bg-accent hover:text-accent-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring dark:shadow-none"
                   aria-label="Next testimonial"
                 >
                   <ArrowRight className="size-4" />
@@ -223,7 +218,6 @@ export function TestimonialsSection() {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
   );

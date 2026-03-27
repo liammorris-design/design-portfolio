@@ -8,13 +8,7 @@ import { PROJECTS } from "@/lib/projects";
 import { PasswordDialog } from "@/components/password-dialog";
 import { Badge } from "@/components/ui/badge";
 
-/** Landing order: Lloyds, CoBa, then FamilyPay + An Post side by side. */
-const LANDING_ORDER: (typeof PROJECTS)[number]["slug"][] = [
-  "lloyds-bank-mvp",
-  "project-2",
-  "familypay",
-  "an-post-money",
-];
+const LANDING_ORDER: (typeof PROJECTS)[number]["slug"][] = ["lloyds-bank-mvp"];
 
 export function WorkCarousel() {
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false);
@@ -54,7 +48,7 @@ export function WorkCarousel() {
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <span
-              className="group/button flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground shadow-none"
+              className="group/button flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-copy-primary shadow-none"
               aria-hidden
             >
               {isComingSoon ? "Coming soon" : "View project"}
@@ -68,11 +62,11 @@ export function WorkCarousel() {
           </div>
         </div>
         <div className="mt-4 flex flex-col gap-1.5 transition-opacity duration-300 group-hover:opacity-[0.66]">
-          <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          <span className="font-mono text-xs font-medium uppercase tracking-wider text-copy-tertiary">
             {proj.company}
           </span>
-          <h4 className="font-semibold text-foreground">{proj.title}</h4>
-          <p className="line-clamp-2 text-sm font-normal leading-relaxed text-muted-foreground">
+          <h4 className="text-copy-primary">{proj.title}</h4>
+          <p className="line-clamp-2 text-sm font-normal leading-relaxed text-copy-secondary">
             {proj.description}
           </p>
           {proj.tags.length > 0 && (

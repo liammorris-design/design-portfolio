@@ -12,9 +12,8 @@ type HeroSectionProps = {
 
 export function HeroSection({ content }: HeroSectionProps) {
   return (
-    <section className="relative">
-      <div className="section-frame">
-        <div className="cs-hero-content">
+    <section className="relative page-section">
+      <div className="cs-hero-content">
         <Button
           asChild
           variant="outline"
@@ -74,7 +73,6 @@ export function HeroSection({ content }: HeroSectionProps) {
           )}
         </div>
         </div>
-      </div>
     </section>
   );
 }

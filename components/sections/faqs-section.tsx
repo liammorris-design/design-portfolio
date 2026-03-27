@@ -46,31 +46,26 @@ const FAQ_ITEMS = [
 
 export function FAQsSection() {
   return (
-    <section id="faqs" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-5 py-10 md:px-20 md:py-5 md:py-20">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-12 text-center">
-          {/* Section title */}
-          <div>
-            <div className="mb-3 flex items-center justify-center gap-2">
-              <LifeBuoy className="size-4 shrink-0 text-muted-foreground" aria-hidden />
-              <span className="font-mono text-sm font-medium tracking-section-label text-muted-foreground" style={{ textTransform: "none" }}>
-                FAQs
-              </span>
-            </div>
-            <h2 className="text-foreground">
-              Frequently Asked Questions.
-            </h2>
+    <section id="faqs" className="page-section scroll-mt-24 bg-background">
+      <div className="flex max-w-2xl flex-col items-start gap-12 text-left">
+        <div>
+          <div className="mb-3 flex items-center gap-2">
+            <LifeBuoy className="size-4 shrink-0 text-copy-tertiary" aria-hidden />
+            <span className="font-mono text-sm font-medium tracking-section-label text-copy-tertiary" style={{ textTransform: "none" }}>
+              FAQs
+            </span>
           </div>
+          <h2 className="text-copy-primary">Frequently Asked Questions.</h2>
+        </div>
 
-          {/* Accordion */}
-          <Accordion type="single" collapsible className="w-full [&_[data-slot=accordion-trigger]>svg]:text-muted-foreground [&_[data-slot=accordion-trigger]]:text-base">
+        <Accordion type="single" collapsible className="w-full [&_[data-slot=accordion-trigger]>svg]:text-copy-tertiary [&_[data-slot=accordion-trigger]]:text-base">
             {FAQ_ITEMS.map(({ question, answer, isNew }, i) => (
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
                 className="border-border"
               >
-                <AccordionTrigger className="py-5 text-left text-foreground font-semibold hover:no-underline hover:text-foreground/80 md:text-center">
+                <AccordionTrigger className="py-5 text-left font-normal text-copy-primary hover:text-copy-primary/80 hover:no-underline">
                   <span className="inline-flex flex-nowrap items-center gap-2">
                     {question}
                     {isNew && (
@@ -80,13 +75,12 @@ export function FAQsSection() {
                     )}
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="text-left text-base text-muted-foreground leading-relaxed pb-6">
+                <AccordionContent className="text-left text-base text-copy-secondary leading-relaxed pb-6">
                   {answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
-          </Accordion>
-        </div>
+        </Accordion>
       </div>
     </section>
   );

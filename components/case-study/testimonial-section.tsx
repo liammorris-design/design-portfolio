@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -23,10 +23,9 @@ export function TestimonialSection({ content }: TestimonialSectionProps) {
     !mounted || resolvedTheme !== "dark" ? "/coba-black.svg" : "/coba-white.svg";
 
   return (
-    <section className="cs-testimonial">
-      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20">
-        <div className="cs-testimonial-inner">
-          <div className="cs-testimonial-card mx-auto max-w-[680px]">
+    <section className="cs-testimonial page-section">
+      <div className="cs-testimonial-inner">
+          <div className="cs-testimonial-card max-w-[680px]">
             <div className="cs-testimonial-logo-wrap">
               {content.companyLogo === "lloyds" ? (
                 <Image
@@ -69,7 +68,6 @@ export function TestimonialSection({ content }: TestimonialSectionProps) {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }

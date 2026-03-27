@@ -10,8 +10,8 @@
   --cs-text-muted: hsl(var(--muted-foreground));
   --cs-badge-border: var(--border);
   --cs-media-bg: var(--muted);
-  /* Horizontal padding: 20px on mobile, 100px on md, 80px on lg+ */
-  --cs-padding-x: 20px;
+  /* Horizontal inset comes from global .page-container; sections do not add extra horizontal padding */
+  --cs-padding-x: 0px;
   --cs-media-padding-x: 40px;
   --cs-back-top: 48px;
   --cs-back-left: 48px;
@@ -27,29 +27,19 @@
   --cs-text-muted: var(--muted-foreground);
 }
 
-@media (min-width: 768px) {
-  [data-case-study] {
-    --cs-padding-x: 100px;
-  }
-}
-
-@media (min-width: 1024px) {
-  [data-case-study] {
-    --cs-padding-x: 80px;
-  }
-}
-
 [data-case-study] {
   background-color: var(--cs-bg);
   color: var(--cs-text);
   min-height: 100vh;
 }
 
-/* Back button – fixed vertically (always visible when scrolling), left syncs with section-frame */
+/* Back button – fixed; horizontal position aligns with .page-container content */
 [data-case-study] .cs-back {
   position: fixed;
   top: var(--cs-back-top);
-  left: max(calc(20px + var(--cs-back-left)), calc((100vw - 1200px) / 2 + var(--cs-back-left)));
+  left: calc(
+    (100vw - min(100vw, var(--page-max-width))) / 2 + var(--page-pad-x) + var(--cs-back-left)
+  );
   z-index: 50;
   display: inline-flex;
   align-items: center;
@@ -73,12 +63,6 @@
 }
 
 
-@media (max-width: 767px) {
-  [data-case-study] .cs-back {
-    left: calc(20px + var(--cs-padding-x));
-  }
-}
-
 .dark [data-case-study] .cs-back {
   background: rgba(30, 30, 30, 0.6);
 }
@@ -100,14 +84,14 @@
 /* Hero content wrapper */
 [data-case-study] .cs-hero-content {
   position: relative;
-  padding: var(--cs-back-top) var(--cs-padding-x) 40px;
+  padding: var(--cs-back-top) 0 40px;
   padding-top: calc(var(--cs-back-top) + 48px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 100%;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -140,7 +124,7 @@
 [data-case-study] .cs-heading {
   margin-bottom: var(--cs-heading-sub);
   max-width: 900px;
-  text-align: center;
+  text-align: left;
 }
 
 /* Sub-heading */
@@ -151,30 +135,16 @@
   color: var(--cs-text-muted);
   margin-bottom: var(--cs-sub-badges);
   max-width: 700px;
-  text-align: center;
+  text-align: left;
 }
 
 /* Tag badges */
 [data-case-study] .cs-tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--cs-badge-gap);
   margin-bottom: var(--cs-badges-media);
-}
-
-@media (max-width: 767px) {
-  [data-case-study] .cs-hero-content {
-    align-items: flex-start;
-    text-align: left;
-  }
-  [data-case-study] .cs-heading,
-  [data-case-study] .cs-subheading {
-    text-align: left;
-  }
-  [data-case-study] .cs-tags {
-    justify-content: flex-start;
-  }
 }
 
 /* Tag badges – pill style.
@@ -207,8 +177,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -258,8 +228,8 @@
 @media (max-width: 767px) {
   [data-case-study] .cs-overview-title {
     font-size: 28px !important;
-    line-height: 34px !important;
-    letter-spacing: -1.12px !important;
+    line-height: 38px !important;
+    letter-spacing: -0.75px !important;
   }
 }
 
@@ -282,7 +252,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem 4rem;
-  max-width: 1200px;
+  max-width: 100%;
   margin-top: 3rem;
 }
 
@@ -331,8 +301,8 @@
 }
 
 [data-case-study] .cs-challenge-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 @media (min-width: 1024px) {
@@ -404,7 +374,7 @@
   gap: 0.5rem;
   color: var(--cs-text);
   margin: 0 0 0.25rem;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 [data-case-study] .cs-challenge-panel-trigger {
@@ -464,23 +434,16 @@
 }
 
 [data-case-study] .cs-solution-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 [data-case-study] .cs-solution-label-wrap {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5rem;
   margin-bottom: 1rem;
-}
-
-@media (max-width: 767px) {
-  [data-case-study] .cs-solution-label-wrap {
-    justify-content: flex-start;
-    text-align: left;
-  }
 }
 
 [data-case-study] .cs-solution-label-icon {
@@ -499,7 +462,7 @@
 [data-case-study] .cs-solution-heading {
   color: var(--cs-text);
   margin: 0 0 2.5rem;
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 768px) {
@@ -523,8 +486,8 @@
 [data-case-study] .cs-solution-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 [data-case-study] .cs-solution-item-title {
@@ -539,27 +502,6 @@
   color: var(--cs-text-muted);
   margin: 0 0 1.5rem;
   max-width: 40rem;
-}
-
-@media (max-width: 767px) {
-  [data-case-study] .cs-solution-heading {
-    text-align: left;
-  }
-
-  [data-case-study] .cs-solution-item {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-   [data-case-study] .cs-results-inner > .mb-3 {
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  [data-case-study] .cs-results-inner .cs-results-label,
-  [data-case-study] .cs-results-inner .cs-results-heading {
-    text-align: left;
-  }
 }
 
 [data-case-study] .cs-solution-image-wrap {
@@ -661,8 +603,8 @@
 }
 
 [data-case-study] .cs-results-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 [data-case-study] .cs-results-icon {
@@ -696,7 +638,7 @@
 }
 
 [data-case-study] .cs-results-grid--two {
-  justify-content: center;
+  justify-content: start;
   grid-template-columns: repeat(2, minmax(200px, 280px));
 }
 
@@ -737,18 +679,9 @@
 [data-case-study] .cs-results-item {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.5rem;
-}
-
-@media (max-width: 767px) {
-  [data-case-study] .cs-results-item {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  [data-case-study] .cs-results-value {
-    text-align: left;
-  }
+  text-align: left;
 }
 
 [data-case-study] .cs-results-value {
@@ -758,6 +691,7 @@
   letter-spacing: -0.025em;
   color: var(--cs-text);
   margin: 0;
+  text-align: left;
 }
 
 [data-case-study] .cs-results-desc {
@@ -774,8 +708,8 @@
 }
 
 [data-case-study] .cs-testimonial-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 [data-case-study] .cs-testimonial-label-wrap {
@@ -801,48 +735,25 @@
 [data-case-study] .cs-testimonial-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
-@media (max-width: 767px) {
-  [data-case-study] .cs-testimonial-card {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  [data-case-study] .cs-testimonial-logo-wrap {
-    justify-content: flex-start;
-  }
-
-  [data-case-study] .cs-testimonial-footer {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  [data-case-study] .cs-testimonial-quote-block {
-    align-items: flex-start;
-    text-align: left;
-  }
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 [data-case-study] .cs-testimonial-logo-wrap {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 2rem;
 }
 
 [data-case-study] .cs-testimonial-footer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   margin-top: 2rem;
-  text-align: center;
+  text-align: left;
 }
 
 [data-case-study] .cs-testimonial-avatar-wrap {
@@ -878,8 +789,8 @@
 [data-case-study] .cs-testimonial-quote-block {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 1rem;
   margin: 0;
   flex: 1;
@@ -907,22 +818,6 @@
   margin: 0;
 }
 
-@media (max-width: 767px) {
-  [data-case-study] .cs-testimonial-card,
-  [data-case-study] .cs-testimonial-quote-block,
-  [data-case-study] .cs-testimonial-footer {
-    text-align: left;
-    align-items: flex-start;
-  }
-
-  [data-case-study] .cs-testimonial-quote,
-  [data-case-study] .cs-testimonial-text,
-  [data-case-study] .cs-testimonial-name,
-  [data-case-study] .cs-testimonial-title {
-    text-align: left;
-  }
-}
-
 [data-case-study] .cs-testimonial-logo {
   height: 2rem;
   width: auto;
@@ -937,12 +832,7 @@
 [data-case-study] .cs-view-more-heading {
   color: var(--cs-text);
   margin: 0 0 2rem;
-}
-
-@media (max-width: 767px) {
-  [data-case-study] .cs-view-more-heading {
-    text-align: left;
-  }
+  text-align: left;
 }
 
 [data-case-study] .cs-view-more-grid {

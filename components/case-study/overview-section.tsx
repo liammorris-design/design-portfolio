@@ -7,8 +7,8 @@ type OverviewSectionProps = {
 
 export function OverviewSection({ content }: OverviewSectionProps) {
   return (
-    <section className="cs-overview">
-      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20">
+    <section className="cs-overview page-section">
+      <div>
         <div className="cs-overview-hero">
           <div className="cs-overview-left">
             <div className="cs-overview-label-wrap">

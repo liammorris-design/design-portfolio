@@ -18,18 +18,18 @@ export function AboutCopy() {
 
   return (
     <div className="flex flex-col">
-      <p className="mb-4 text-muted-foreground leading-relaxed">
+      <p className="mb-4 text-copy-secondary leading-relaxed">
         {PARAGRAPH_1}
       </p>
       {/* Desktop: full second paragraph */}
       <div className="hidden md:block">
-        <p className="text-muted-foreground leading-relaxed">{PARAGRAPH_2_FULL}</p>
+        <p className="text-copy-secondary leading-relaxed">{PARAGRAPH_2_FULL}</p>
       </div>
       {/* Mobile: teaser + Show more or full */}
       <div className="md:hidden">
         {!expanded ? (
           <>
-            <p className="mb-4 text-muted-foreground leading-relaxed">
+            <p className="mb-4 text-copy-secondary leading-relaxed">
               {PARAGRAPH_2_TEASER}
             </p>
             <div className="flex justify-start md:justify-center">
@@ -45,7 +45,7 @@ export function AboutCopy() {
             </div>
           </>
         ) : (
-          <p className="text-muted-foreground leading-relaxed">{PARAGRAPH_2_FULL}</p>
+          <p className="text-copy-secondary leading-relaxed">{PARAGRAPH_2_FULL}</p>
         )}
       </div>
     </div>

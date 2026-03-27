@@ -12,14 +12,14 @@ type ProjectPageContentProps = {
 
 export function ProjectPageContent({ project, otherProjects }: ProjectPageContentProps) {
   return (
-    <div className="section-frame">
-      <article className="px-5 py-5 md:px-20 md:py-5 md:py-20">
+    <div className="page-container">
+      <article className="page-section">
         {/* Project header */}
         <header className="mb-12">
-          <h1 className="mb-4 text-foreground">
+          <h1 className="mb-4 text-copy-primary">
             {project.title}
           </h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">
+          <p className="max-w-2xl text-lg text-copy-secondary">
             A short case study describing the challenge, approach, and outcomes
             of this project. This is placeholder content—replace with your
             actual case study copy.
@@ -41,30 +41,30 @@ export function ProjectPageContent({ project, otherProjects }: ProjectPageConten
         {/* Case study content - placeholder sections */}
         <div className="prose prose-neutral dark:prose-invert max-w-none space-y-12">
           <section>
-            <h2 className="mb-4 text-foreground">
+            <h2 className="mb-4 text-copy-primary">
               The challenge
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-copy-secondary leading-relaxed">
               Describe the problem or opportunity that prompted this project.
               What were the key constraints and success criteria?
             </p>
           </section>
 
           <section>
-            <h2 className="mb-4 text-foreground">
+            <h2 className="mb-4 text-copy-primary">
               The approach
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-copy-secondary leading-relaxed">
               Outline your design process: research, ideation, prototyping, and
               iteration. How did you work with stakeholders and users?
             </p>
           </section>
 
           <section>
-            <h2 className="mb-4 text-foreground">
+            <h2 className="mb-4 text-copy-primary">
               The outcome
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-copy-secondary leading-relaxed">
               Summarise the results. Include metrics, feedback, or learnings
               where relevant. What impact did the work have?
             </p>
@@ -73,7 +73,7 @@ export function ProjectPageContent({ project, otherProjects }: ProjectPageConten
 
         {/* See more projects */}
         <section className="mt-20 border-t border-border pt-20">
-          <h2 className="mb-6 text-foreground">
+          <h2 className="mb-6 text-copy-primary">
             See more projects
           </h2>
           <div className="flex flex-wrap gap-4">

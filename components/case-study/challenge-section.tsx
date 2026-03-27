@@ -14,9 +14,8 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
   const [objectiveOpen, setObjectiveOpen] = useState(false);
 
   return (
-    <section className="cs-challenge">
-      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20">
-        <div className="cs-challenge-inner">
+    <section className="cs-challenge page-section">
+      <div className="cs-challenge-inner">
           <div className="cs-challenge-header">
             <div className="cs-challenge-label-wrap">
               <Angry
@@ -30,7 +29,7 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
             <h2 className="cs-challenge-heading">{content.heading}</h2>
           </div>
           <div className="cs-challenge-panels">
-            <div className="cs-challenge-panel relative flex w-full flex-col gap-2 overflow-hidden rounded-[var(--radius-card)] border border-border bg-white px-5 py-5 text-foreground dark:bg-white/[0.03] md:px-8 md:py-8">
+            <div className="cs-challenge-panel relative flex w-full flex-col gap-2 overflow-hidden rounded-[var(--radius-card)] border border-border bg-card px-5 py-5 text-copy-primary md:px-8 md:py-8">
               <button
                 type="button"
                 onClick={() => setProblemOpen((o) => !o)}
@@ -66,7 +65,7 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
                 <p className="cs-challenge-panel-text">{content.problem}</p>
               </div>
             </div>
-            <div className="cs-challenge-panel relative flex w-full flex-col gap-2 overflow-hidden rounded-[var(--radius-card)] border border-border bg-white px-5 py-5 text-foreground dark:bg-white/[0.03] md:px-8 md:py-8">
+            <div className="cs-challenge-panel relative flex w-full flex-col gap-2 overflow-hidden rounded-[var(--radius-card)] border border-border bg-card px-5 py-5 text-copy-primary md:px-8 md:py-8">
               <button
                 type="button"
                 onClick={() => setObjectiveOpen((o) => !o)}
@@ -109,7 +108,6 @@ export function ChallengeSection({ content }: ChallengeSectionProps) {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }

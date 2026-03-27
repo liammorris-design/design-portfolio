@@ -120,7 +120,7 @@ export function ProjectGate({ slug, children }: ProjectGateProps) {
           </DialogContent>
         </Dialog>
         <div className="min-h-[50vh] flex items-center justify-center">
-          <p className="text-muted-foreground">Enter password to continue.</p>
+          <p className="text-copy-secondary">Enter password to continue.</p>
         </div>
       </>
     );

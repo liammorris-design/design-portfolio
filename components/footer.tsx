@@ -2,24 +2,71 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HomeSectionLink } from "@/components/home-section-link";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { siteCopyright, siteSitemap } from "@/lib/landing-content";
+
+const footerLinkClass =
+  "text-sm font-medium text-copy-primary transition-opacity hover:opacity-70";
+
+function FooterLink({ href, children }: { href: string; children: string }) {
+  if (href.startsWith("/#")) {
+    return (
+      <HomeSectionLink href={href} className={footerLinkClass}>
+        {children}
+      </HomeSectionLink>
+    );
+  }
+  return (
+    <Link href={href} className={footerLinkClass}>
+      {children}
+    </Link>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="border-t border-border-subtle bg-background text-foreground">
-      <div className="section-frame px-5 py-10 md:px-20 md:py-5 md:py-20">
-        {/* Bottom row */}
-        <div className="flex w-full flex-col items-stretch justify-between gap-6 sm:flex-row sm:items-center sm:flex-initial">
-          <div className="flex flex-row flex-wrap items-center gap-x-2 gap-y-1">
-            <p className="text-sm text-muted-foreground">
-              Copyright © 2026 Liam Morris Design.
+    <footer
+      className="border-t bg-background text-copy-secondary"
+      style={{ borderColor: "var(--footer-rule)" }}
+    >
+      <div className="page-container py-12 md:py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.075em] text-palette-accent">
+              Site
             </p>
+            <nav className="flex flex-col gap-2" aria-label="Footer site links">
+              {siteSitemap.colA.map((item) => (
+                <FooterLink key={item.label} href={item.href}>
+                  {item.label}
+                </FooterLink>
+              ))}
+            </nav>
           </div>
-          <div className="flex w-full items-center justify-between sm:w-auto sm:justify-end sm:gap-2">
-            <span className="inline-flex">
-              <ThemeToggle />
-            </span>
-            <div className="hidden">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.075em] text-palette-accent">
+              More
+            </p>
+            <nav className="flex flex-col gap-2" aria-label="Footer secondary links">
+              {siteSitemap.colB.map((item) =>
+                item.href ? (
+                  <FooterLink key={item.label} href={item.href}>
+                    {item.label}
+                  </FooterLink>
+                ) : (
+                  <span key={item.label} className="text-sm text-copy-tertiary">
+                    {item.label} (soon)
+                  </span>
+                )
+              )}
+            </nav>
+          </div>
+          <div className="lg:col-span-2">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.075em] text-palette-accent">
+              Social
+            </p>
+            <div className="flex flex-wrap gap-2">
               <Button variant="outline" size="icon" className="rounded-full" asChild>
                 <a
                   href="https://www.linkedin.com/in/liammorrisdesign/"
@@ -55,16 +102,20 @@ export function Footer() {
                 </a>
               </Button>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              className="!pl-4 pr-3"
-              asChild
-            >
-              <Link href="/#hero" className="gap-2">
+          </div>
+        </div>
+
+        <hr className="landing-section-rule my-10 md:my-12" aria-hidden />
+
+        <div className="flex w-full flex-col items-stretch justify-between gap-6 sm:flex-row sm:items-center">
+          <p className="text-sm text-copy-tertiary">{siteCopyright}</p>
+          <div className="flex w-full flex-wrap items-center justify-between gap-4 sm:w-auto sm:justify-end">
+            <ThemeToggle />
+            <Button variant="outline" size="sm" className="!pl-4 pr-3" asChild>
+              <HomeSectionLink href="/#hero" className="gap-2">
                 Back to top
                 <ArrowUp className="size-4" />
-              </Link>
+              </HomeSectionLink>
             </Button>
           </div>
         </div>

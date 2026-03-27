@@ -25,13 +25,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const content = <CaseStudyTemplate project={project} />;
 
-  const mainClassName =
-    project.slug === "an-post-money"
-      ? "min-h-screen overflow-x-hidden md:overflow-x-visible"
-      : "min-h-screen";
-
   return (
-    <main className={mainClassName}>
+    <main className="min-h-screen">
       {project.requiresPassword ? (
         <ProjectGate slug={slug}>{content}</ProjectGate>
       ) : (

@@ -55,19 +55,16 @@ const SHOW_SERVICE_IMAGES = false;
 
 export function ServicesSection() {
   return (
-    <section id="services" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-5 py-10 md:px-20 md:py-10 md:py-20">
-        <div className="mb-3 flex items-center gap-2">
-          <Component className="size-4 shrink-0 text-muted-foreground dark:text-white" aria-hidden />
-          <span className="font-mono text-sm font-medium uppercase tracking-wider text-muted-foreground">
-            Services
-          </span>
-        </div>
-        <h2 className="mb-12 text-foreground">
-          Core design services I offer.
-        </h2>
+    <section id="services" className="page-section scroll-mt-24 bg-background">
+      <div className="mb-3 flex items-center gap-2">
+        <Component className="size-4 shrink-0 text-copy-tertiary" aria-hidden />
+        <span className="font-mono text-sm font-medium uppercase tracking-wider text-copy-tertiary">
+          Services
+        </span>
+      </div>
+      <h2 className="mb-12 text-copy-primary">Core design services I offer.</h2>
 
-        <div className="services-tile-grid grid gap-0 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="services-tile-grid grid min-w-0 gap-0 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map(({ icon: Icon, title, description, isNew }, index) => (
             <Card
               key={title}
@@ -81,9 +78,9 @@ export function ServicesSection() {
               )}
               <CardHeader className="flex flex-col gap-2">
                 <div className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:bg-white/[0.03] dark:shadow-none md:size-11">
-                  <Icon className="size-4 text-muted-foreground dark:text-white md:size-5" aria-hidden />
+                  <Icon className="size-4 text-copy-tertiary md:size-5" aria-hidden />
                 </div>
-                <h5 className="text-foreground">{title}</h5>
+                <h5 className="text-copy-primary">{title}</h5>
                 <CardDescription>
                   {description}
                 </CardDescription>
@@ -91,13 +88,12 @@ export function ServicesSection() {
               {SHOW_SERVICE_IMAGES && (
               <CardContent className="pb-0">
                 <div className="flex aspect-[16/10] items-center justify-center rounded-[var(--radius-card)] bg-muted">
-                  <Monitor className="size-10 text-muted-foreground dark:text-white" aria-hidden />
+                  <Monitor className="size-10 text-copy-tertiary" aria-hidden />
                 </div>
               </CardContent>
               )}
             </Card>
           ))}
-        </div>
       </div>
     </section>
   );

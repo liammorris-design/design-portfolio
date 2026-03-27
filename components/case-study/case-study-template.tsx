@@ -29,23 +29,39 @@ export function CaseStudyTemplate({ project, children }: CaseStudyTemplateProps)
   const testimonialContent = getCaseStudyTestimonial(project.slug);
 
   return (
-    <div data-case-study>
-      <HeroSection content={heroContent} />
-      <OverviewSection content={overviewContent} />
-      {challengeContent && (
-        <ChallengeSection content={challengeContent} />
-      )}
-      {solutionContent && (
-        <SolutionSection content={solutionContent} />
-      )}
-      {resultsContent && project.slug !== "familypay" && (
-        <ResultsSection content={resultsContent} />
-      )}
-      {testimonialContent && (
-        <TestimonialSection content={testimonialContent} />
-      )}
-      <ViewMoreSection currentSlug={project.slug} />
-      {children}
+    <div data-case-study className="min-w-0 overflow-x-hidden">
+      <div className="page-container min-w-0">
+        <HeroSection content={heroContent} />
+        <hr className="section-divider" aria-hidden />
+        <OverviewSection content={overviewContent} />
+        {challengeContent && (
+          <>
+            <hr className="section-divider" aria-hidden />
+            <ChallengeSection content={challengeContent} />
+          </>
+        )}
+        {solutionContent && (
+          <>
+            <hr className="section-divider" aria-hidden />
+            <SolutionSection content={solutionContent} />
+          </>
+        )}
+        {resultsContent && (
+          <>
+            <hr className="section-divider" aria-hidden />
+            <ResultsSection content={resultsContent} />
+          </>
+        )}
+        {testimonialContent && (
+          <>
+            <hr className="section-divider" aria-hidden />
+            <TestimonialSection content={testimonialContent} />
+          </>
+        )}
+        <hr className="section-divider" aria-hidden />
+        <ViewMoreSection currentSlug={project.slug} />
+        {children}
+      </div>
     </div>
   );
 }

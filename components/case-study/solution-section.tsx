@@ -61,9 +61,8 @@ export function SolutionSection({ content }: SolutionSectionProps) {
     isLightboxOpen && lightboxIndex !== null ? allImages[lightboxIndex] : null;
 
   return (
-    <section className="cs-solution">
-      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20">
-        <div className="cs-solution-inner">
+    <section className="cs-solution page-section">
+      <div className="cs-solution-inner">
           <div className="cs-solution-label-wrap">
             <TrendingUp
               className="cs-solution-label-icon size-[14px] shrink-0"
@@ -211,12 +210,11 @@ export function SolutionSection({ content }: SolutionSectionProps) {
             })}
           </div>
           {content.footerNote && (
-            <p className="mt-12 text-center text-sm text-muted-foreground">
+            <p className="mt-12 text-left text-sm text-copy-secondary">
               {content.footerNote}
             </p>
           )}
         </div>
-      </div>
 
       {isLightboxOpen && currentImageSrc && (
         <div

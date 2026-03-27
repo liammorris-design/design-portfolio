@@ -2,6 +2,15 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Self-hosted heading face — Tiempos Text (file: public/Fonts/tiempos-text-regular.woff2) */
+@font-face {
+  font-family: "Tiempos Text";
+  src: url("/Fonts/tiempos-text-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -39,8 +48,12 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* UI “mono” labels use Inter (same as body) per design system */
+  --font-mono: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Tiempos Text (self-hosted woff2) + fallbacks */
+  --font-heading: "Tiempos Text", "Tiempos", "Times New Roman", Times, serif;
+  --width-page-max: 90rem;
   /* Radius: single source of truth (New York softness = 10px) */
   --radius: 0.625rem;
   --radius-sm: calc(var(--radius) - 4px);
@@ -54,89 +67,257 @@
   /* Typography: New York tracking */
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.02em;
-  --tracking-cta-heading: -1.5px;
-  --tracking-h4: -1px;
+  /* FAQ accordion questions — no optical tightening */
+  --tracking-faq-question: 0px;
+  --tracking-cta-heading: -1px;
+  --tracking-h4: -0.5px;
   --tracking-section-label: 1px;
   /* Spacing tokens */
   --space-back-to-top-left: 1.375rem; /* 22px */
-  /* Figma-derived: display / hero */
-  --tracking-display: -2.4px;
-  --text-display: 4rem;
-  --text-display--line-height: 1.1;
-  /* Lead / intro paragraph */
-  --text-lead: 1.125rem;
-  --text-lead--line-height: 1.6;
-  /* Pulse wave: radial ripple from center (used by .pulse ::after) */
-  --animate-pulse-wave: pulse-wave 2s ease-out infinite;
-  @keyframes pulse-wave {
-    0% {
-      transform: scale(1);
-      opacity: 0.6;
-    }
-    100% {
-      transform: scale(2.5);
-      opacity: 0;
-    }
-  }
+  /* Display / hero — landing hero uses 72px tokens below */
+  --tracking-display: -1.4px;
+  --text-display: 4.5rem;
+  /* Match landing hero line height (86px, 4px grid; ratio ~1.194 × 72px) */
+  --text-display--line-height: 5.375rem;
+  /* Heading scale: line-height tokens are fixed px (rem) per design */
+  --text-h1: 4rem;
+  --text-h1--line-height: 4.75rem; /* 76px */
+  --text-h1--letter-spacing: -0.02em;
+  /* Landing hero H1 only (72px) — line-height & tracking scale from former 64/76/-0.02em */
+  --text-landing-hero-display: 4.5rem; /* 72px */
+  --text-landing-hero-display--line-height: 5.375rem; /* 86px */
+  --text-landing-hero-display--letter-spacing: -0.021em;
+  --text-h2: 3.5rem;
+  --text-h2--line-height: 4.25rem; /* 68px */
+  --text-h2--letter-spacing: -0.03em;
+  --text-h3: 2.8125rem;
+  --text-h3--line-height: 3.75rem; /* 60px */
+  --text-h3--letter-spacing: -0.02em;
+  --text-h4: 2.125rem;
+  --text-h4--line-height: 2.75rem; /* 44px */
+  --text-h4--letter-spacing: -0.012em;
+  --text-h5: 1.75rem;
+  --text-h5--line-height: 2.6875rem; /* 43px */
+  --text-h5--letter-spacing: -0.005em;
+  --text-h6: 1.375rem;
+  --text-h6--line-height: 2.125rem; /* 34px */
+  --text-h6--letter-spacing: -0.005em;
+  /* Body copy scale (Inter) — use `text-body-base`, `text-body-lead`, `text-eyebrow`, `text-body-ui` */
+  --text-body-base: 1rem;
+  --text-body-base--line-height: 1.625;
+  --text-body-base--letter-spacing: -0.011em;
+  /* Editorial lead (18px): line-height 1.6 matches former text-xl + leading-8; relaxed = 32px line box */
+  --text-body-lead: 1.125rem;
+  --text-body-lead--line-height: 1.6;
+  --text-body-lead--line-height-relaxed: 2rem;
+  --text-body-lead--letter-spacing: -0.015em;
+  /* Expertise (#services) row body — 16px / 28px / -0.32px */
+  --text-services-row: 1rem;
+  --text-services-row--line-height: 1.75rem;
+  --text-services-row--letter-spacing: -0.32px;
+  /* Hero intro blurb under display title (18px; line-height tracks former 22px/36px ratio) */
+  --text-hero-lead: 1.125rem;
+  --text-hero-lead--line-height: 1.636;
+  --text-hero-lead--letter-spacing: -0.017em;
+  /* Mobile sheet nav only — not `--text-*` (avoids Tailwind v4 auto `text-*` utilities clashing). */
+  --mobile-sheet-nav-size: 1.125rem;
+  --mobile-sheet-nav-leading: 1.5rem;
+  --mobile-sheet-nav-tracking: -0.012em;
+  /* Section eyebrows — 14px / 20px line-height, 0.75px tracking */
+  --text-eyebrow: 0.875rem;
+  --text-eyebrow--line-height: 1.25rem;
+  --text-eyebrow--letter-spacing: 0.75px;
+  --text-body-ui: 0.875rem;
+  --text-body-ui--line-height: 1.5;
+  --text-body-ui--letter-spacing: -0.006em;
+  /* Header wordmark (20px) */
+  --text-nav-logo: 1.25rem;
+  --text-nav-logo--line-height: 1.5rem;
+  /* SVG wordmark in header (20px tall; aligns with text-nav-logo scale) */
+  --height-nav-logo: 1.25rem;
+  --color-brand-wordmark: var(--brand-wordmark);
+  /* Page canvas (alias of --background) — `bg-page` */
+  --color-page: var(--background);
+  /* Top announcement strip — `bg-sticky-bar`, `text-sticky-bar-fg` */
+  --color-sticky-bar: var(--sticky-bar-bg);
+  --color-sticky-bar-fg: var(--sticky-bar-fg);
+  /* Primary CTA fill — `bg-button` / mirrors `--primary` */
+  --color-button: var(--button-bg);
+  /* Typography hierarchy — use `text-copy-*` utilities (distinct from shadcn `primary` for buttons) */
+  --color-copy-primary: var(--text-primary);
+  --color-copy-secondary: var(--text-secondary);
+  --color-copy-tertiary: var(--text-tertiary);
+  /* Alias: lead intro (matches body-lead) */
+  --text-lead: var(--text-body-lead);
+  --text-lead--line-height: var(--text-body-lead--line-height);
+  /* Footer “Let’s talk” + sitemap underlined links */
+  --text-landing-footer-link: 1.125rem; /* 18px */
+  --text-landing-footer-link--line-height: 2rem; /* 32px */
+  --text-landing-footer-link--letter-spacing: -0.2px;
 }
 
 :root {
+  --page-max-width: 90rem; /* 1440px */
+  /* About (#about): flex gap between copy and metrics (px so gap matches spec regardless of root rem) */
+  --gap-about-split-tablet: 80px;
+  --gap-about-split-desktop: 120px;
+  /* Fixed announcement strip above navbar — must match `SiteAnnouncementBar` min-height + padding */
+  --site-announcement-bar-height: 2.75rem; /* 44px — single line at sm+ */
+  /* Hero copy column cap; must live on :root so layout utilities resolve reliably */
+  --width-landing-hero-copy-max: 55rem; /* 880px — room for 72px display: “Senior product designer” on line 1 */
+  /* About (#about) intro column — max share of section width (639px–1239px), see landing-page */
+  --width-about-copy-max-pct-range: 75%;
+  /* Testimonials (#testimonials) cards */
+  --width-landing-testimonial-card: 42.5rem; /* 680px */
+  /* Work (#work) carousel: gap between full-width tiles (`min-w-full w-full` in LandingProjects) */
+  --gap-work-carousel: 2.5rem; /* 40px */
+  /* Horizontal gutter for `.page-container`, `.landing-shell`, header chrome — mobile */
+  --page-pad-x: 1.25rem; /* 20px — mobile (max 767px) */
+  /* Half the between-blocks gap per side (mobile total 40px) */
+  --section-block-y: 1.25rem;
+  --section-y-xl: 4rem;
   --hero-grid: hsl(240 5% 88%);
   --radius-card: 0.75rem; /* 12px – image containers, cards, tiles */
-  /* Light-mode background: #FAFAFA */
-  --background: hsl(0 0% 98%);
-  --foreground: hsl(240 10% 3.9%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(240 10% 3.9%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(240 10% 3.9%);
-  --primary: hsl(240 5.9% 10%);
-  --primary-foreground: hsl(0 0% 98%);
+  /* Portfolio text palette (light) */
+  --brand-wordmark: #221e1e;
+  /* Primary CTA hover ring / shimmer (dark fill, light highlight) */
+  --nav-book-cta-ring-value: hsl(0 0% 100% / 0.34);
+  --nav-book-cta-shimmer-mid-value: hsl(0 0% 100% / 0.5);
+  /* Brand: sticky strip + default filled buttons (shared token light/dark where noted) */
+  --sticky-bar-bg: #221e1e;
+  --sticky-bar-fg: #f5f5f7;
+  --sticky-bar-fg-muted: hsl(240 6% 78%);
+  --button-bg: #221e1e;
+  /* Typography hierarchy (light): headings / body / captions */
+  --text-primary: #221e1e;
+  --text-secondary: #333333;
+  --text-tertiary: #676767;
+  --text-heading: var(--text-primary);
+  --text-body: var(--text-secondary);
+  --text-accent: var(--text-tertiary);
+  --text-subhead: var(--text-tertiary);
+  --surface-pill: #efefef;
+  --surface-faq-pill: #f6f6f6;
+  --surface-media: #606060;
+  --badge-new-bg: #c6f8d3;
+  --badge-new-fg: #036a1d;
+  --footer-rule: #dcdcde;
+  --text-metric: 2.5rem;
+  --text-metric--line-height: 1.2;
+  --text-metric--tracking: -0.04em;
+  /* Page canvas — pure white */
+  --background: #ffffff;
+  /* Body / default UI — matches --text-secondary */
+  --foreground: 0 0% 20%;
+  --card: #ffffff;
+  --card-foreground: #221e1e;
+  --popover: #ffffff;
+  --popover-foreground: #221e1e;
+  --primary: var(--button-bg);
+  --primary-foreground: #f5f5f7;
   /* Slightly darker secondary for badges & secondary buttons */
   --secondary: hsl(0 0% 92.2%);
-  --secondary-foreground: hsl(240 5.9% 10%);
+  --secondary-foreground: #221e1e;
   --muted: hsl(240 4.8% 95.9%);
-  /* Light-mode secondary text: #666666 (used via hsl(var(--muted-foreground))) */
+  /* Captions / muted UI — matches --text-tertiary */
   --muted-foreground: 0 0% 40%;
   --accent: hsl(240 4.8% 95.9%);
-  --accent-foreground: hsl(240 5.9% 10%);
+  --accent-foreground: #221e1e;
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(0 0% 98%);
   /* Light-mode strokes: #EBEBEB across borders & outlines */
   --border: hsl(0 0% 92.2%);
   --border-subtle: hsl(0 0% 92.2%);
   --input: hsl(0 0% 92.2%);
-  --ring: hsl(240 5.9% 10%);
+  --ring: #221e1e;
   --chart-1: hsl(12 76% 61%);
   --chart-2: hsl(173 58% 39%);
   --chart-3: hsl(197 37% 24%);
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.9% 10%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #221e1e;
+  --sidebar-primary: #221e1e;
+  --sidebar-primary-foreground: #f5f5f7;
   --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-accent-foreground: #221e1e;
   --sidebar-border: hsl(0 0% 92.2%);
-  --sidebar-ring: hsl(240 5.9% 10%);
+  --sidebar-ring: #221e1e;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-pad-x: 2.5rem; /* 40px — tablet (md–lg) */
+    --section-block-y: 2.5rem; /* tablet: 40px + 40px between blocks */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-pad-x: 5rem; /* 80px — desktop (lg+) */
+    --section-block-y: 5rem; /* desktop: 80px + 80px between blocks */
+    --section-y-xl: 10rem; /* 160px major section block (Figma) */
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --section-y-xl: 5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --section-y-xl: 4rem;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    /* Strip height for spacer / `Navbar` offset — matches py-3 + 1–2 lines (not the old 5rem / 80px) */
+    --site-announcement-bar-height: 3.75rem; /* 60px */
+  }
 }
 
 .dark {
+  /* Portfolio text palette (dark equivalents) */
+  --brand-wordmark: #ffffff;
+  --nav-book-cta-ring-value: hsl(0 0% 100% / 0.3);
+  --nav-book-cta-shimmer-mid-value: hsl(0 0% 100% / 0.42);
+  /* Sticky strip — same charcoal as light mode; light foreground */
+  --sticky-bar-bg: #221e1e;
+  --sticky-bar-fg: #f5f5f7;
+  --sticky-bar-fg-muted: hsl(240 5% 72%);
+  /* Filled buttons: light surface on lifted black for contrast */
+  --button-bg: #f5f5f7;
+  /* Typography hierarchy (dark) */
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --text-tertiary: #6e6e73;
+  --text-heading: var(--text-primary);
+  --text-body: var(--text-secondary);
+  --text-accent: var(--text-tertiary);
+  --text-subhead: var(--text-tertiary);
+  --surface-pill: #1a1a1a;
+  --surface-faq-pill: hsl(240 4% 16%);
+  --surface-media: #3f3f42;
+  --badge-new-bg: hsl(142 35% 18%);
+  --badge-new-fg: #86efac;
+  --footer-rule: hsl(240 4% 28%);
   /* Slightly brighter grid in dark mode for better visibility */
   --hero-grid: hsl(240 7% 16%);
-  --background: hsl(240 10% 3.9%);
-  --foreground: hsl(0 0% 98%);
-  --card: hsl(240 10% 3.9%);
+  --background: #151515;
+  --foreground: 240 3% 64%;
+  --card: #1a1a1a;
   --card-foreground: hsl(0 0% 98%);
-  --popover: hsl(240 10% 3.9%);
+  --popover: #1a1a1a;
   --popover-foreground: hsl(0 0% 98%);
-  --primary: hsl(0 0% 98%);
-  --primary-foreground: hsl(240 5.9% 10%);
+  --primary: var(--button-bg);
+  --primary-foreground: #151515;
   --secondary: hsl(240 3.7% 15.9%);
   --secondary-foreground: hsl(0 0% 98%);
   --muted: hsl(240 3.7% 15.9%);
-  --muted-foreground: hsl(240 5% 64.9%);
+  --muted-foreground: 240 2% 44%;
   --accent: hsl(240 3.7% 15.9%);
   --accent-foreground: hsl(0 0% 98%);
   --destructive: hsl(0 62.8% 30.6%);
@@ -160,77 +341,205 @@
   --sidebar-ring: hsl(240 4.9% 83.9%);
 }
 
-/* Section frame: bordered container with mandatory 20px gutters on each side.
-   width: calc(100% - 40px) ensures strokes never touch the viewport edge,
-   even at 1200px or on mobile. Internal padding (e.g. px-20) stays inside the strokes. */
-.section-frame {
-  width: calc(100% - 40px);
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  border-left: 1px solid var(--border-subtle);
-  border-right: 1px solid var(--border-subtle);
-}
-
-/* Hero grid container: fill hero height and clip so grid is only cropped by section-frame strokes */
-.hero-with-grid {
-  min-height: 100%;
-  overflow: hidden;
+/* Header Calendly CTA: instant 1px ring on hover; shimmer sweep (respects reduced motion). */
+.nav-book-cta {
   position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px transparent;
+  transition-property: background-color, opacity, color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
 }
 
-/* Hero grid background: full-bleed grid + radial fade (center 75% opacity, edges 0%).
-   Grid fills entire hero; responsive via background-size; radial works in light and dark mode. */
-.hero-with-grid::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  /* Grid pattern: 32px cells, fills any viewport; background-size makes it responsive */
-  background-image: repeating-linear-gradient(
-      0deg,
-      var(--hero-grid) 0,
-      var(--hero-grid) 1px,
-      transparent 1px,
-      transparent 32px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      var(--hero-grid) 0,
-      var(--hero-grid) 1px,
-      transparent 1px,
-      transparent 32px
-    );
-  background-size: 32px 32px;
-  background-position: 0 0;
-  background-repeat: repeat;
-  /* Radial fade: centre 75% opacity, outsides 0%; farthest-side so fade reaches top, bottom, left, right */
-  mask-image: radial-gradient(
-    circle farthest-side at 50% 50%,
-    rgba(0, 0, 0, 0.75) 0%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle farthest-side at 50% 50%,
-    rgba(0, 0, 0, 0.75) 0%,
-    transparent 100%
-  );
-  mask-size: 100% 100%;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
+.nav-book-cta:hover {
+  box-shadow: 0 0 0 1px var(--nav-book-cta-ring-value);
+}
+
+.nav-book-cta__label {
+  transition: opacity 150ms ease-in-out;
+}
+
+.nav-book-cta:hover .nav-book-cta__label {
   opacity: 0.8;
-  transition:
-    opacity 200ms ease-out,
-    transform 300ms ease-out;
-  pointer-events: none;
 }
 
-.hero-with-grid:hover::before {
-  opacity: 1;
-  transform: scale(1.02);
+.nav-book-cta__shimmer {
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 42%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--nav-book-cta-shimmer-mid-value) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%) skewX(-14deg);
+  transform-origin: center;
+}
+
+.nav-book-cta:hover .nav-book-cta__shimmer {
+  animation: nav-book-cta-shimmer 0.7s ease-in-out 400ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-book-cta:hover .nav-book-cta__shimmer {
+    animation: none;
+  }
+
+  .nav-book-cta:hover .nav-book-cta__label {
+    opacity: 1;
+  }
+}
+
+@keyframes nav-book-cta-shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-14deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(280%) skewX(-14deg);
+    opacity: 0;
+  }
+}
+
+/* Single-layer shell: max 1440px, centred; horizontal gutter via responsive `--page-pad-x` (20 / 40 / 80px). */
+.page-container {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-pad-x);
+  box-sizing: border-box;
+}
+
+/*
+ * Landing: same max width as `.page-container` (1440px); horizontal padding matches site chrome.
+ * Work carousel: `--gap-work-carousel`; tiles are full track width in TSX; scroll track width
+ * `calc((100vw + 100%) / 2)` in `LandingProjects` bleeds to the viewport right from the shell column.
+ */
+.landing-shell {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-pad-x);
+  box-sizing: border-box;
+  text-align: left;
+  overflow-x: visible;
+}
+
+/*
+ * About (#about) + Expertise (#services): two-column gap. Plain CSS so gap always
+ * applies — Tailwind `gap-[var(--…)]` utilities are not reliably emitted for
+ * custom properties. About uses flex; services uses grid (sticky media column).
+ */
+.landing-about-split,
+.landing-services-split {
+  gap: 3rem; /* stacked mobile; matches previous gap-12 */
+}
+@media (min-width: 768px) {
+  .landing-about-split,
+  .landing-services-split {
+    gap: var(--gap-about-split-tablet);
+  }
+}
+@media (min-width: 1024px) {
+  .landing-about-split,
+  .landing-services-split {
+    gap: var(--gap-about-split-desktop);
+  }
+}
+
+/* Hero intro stack: capped by --width-landing-hero-copy-max; heading + lead fill this box. */
+.landing-hero-copy {
+  box-sizing: border-box;
+  display: flex;
+  min-width: 0;
+  width: min(100%, var(--width-landing-hero-copy-max));
+  max-width: var(--width-landing-hero-copy-max);
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.landing-hero-copy > h1,
+.landing-hero-copy > p {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Hero: at lg, flatten copy stack so H1 / lead participate in the outer grid (H1 + portrait share row 1, vertically centred together). */
+@media (min-width: 1024px) {
+  .landing-hero-copy--grid-bridge {
+    display: contents;
+    width: auto;
+    max-width: none;
+    gap: 0;
+  }
+}
+
+/*
+ * Hero reel: 1280×720 aspect. Width fills the shell column but cannot exceed 1440px nor the
+ * parent’s content width (min(100%, …) stops full-viewport stretch if the containing block is wrong).
+ */
+.landing-hero-reel {
+  position: relative;
+  width: 100%;
+  max-width: min(100%, var(--page-max-width));
+  margin-inline: 0;
+  aspect-ratio: 1280 / 720;
+  overflow: hidden;
+}
+
+/* Full-width rule inside the shell (line matches 1440 content width). */
+.landing-section-rule {
+  margin: 0;
+  height: 0;
+  border: 0;
+  border-top: 1px solid #dcdcde;
+}
+
+.dark .landing-section-rule {
+  border-top-color: var(--footer-rule);
+}
+
+/* Global editorial palette — mirrors --text-primary / --text-secondary / --text-tertiary */
+.text-palette-heading {
+  color: var(--text-primary);
+}
+.text-palette-body {
+  color: var(--text-secondary);
+}
+.text-palette-accent {
+  color: var(--text-tertiary);
+}
+
+.page-section {
+  padding-block: var(--section-block-y);
+}
+
+.page-section--xl {
+  padding-block: var(--section-y-xl, var(--section-block-y));
+}
+
+.section-divider-band {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-block: 0.625rem;
+}
+
+.section-divider {
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
 }
 
 /* Rounded edges for input fields (buttons use rounded-xl in component) */
@@ -240,10 +549,29 @@
   }
   html {
     scroll-behavior: auto !important; /* no smooth scroll anywhere; in-page links use JS smooth scroll */
+    /* visible: work carousel uses a full-`100vw` strip; `clip`/`hidden` here painted outside the shell. Prefer layout that stays within the viewport (e.g. `w-screen max-w-[100vw]`). */
+    overflow-x: visible;
+    font-optical-sizing: auto;
   }
   body {
-    @apply bg-background text-foreground;
-    letter-spacing: 0;
+    @apply bg-background;
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-size: 1rem;
+    line-height: 1.625;
+    letter-spacing: -0.011em;
+    font-weight: 400;
+    color: var(--text-secondary);
+    overflow-x: visible;
+  }
+  p {
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-size: 1rem;
+    line-height: 1.625;
+    letter-spacing: -0.011em;
+    font-weight: 400;
+    color: var(--text-secondary);
   }
   h4 {
     letter-spacing: var(--tracking-h4);
@@ -260,199 +588,86 @@
   }
 }
 
-/* 14px, 16px, 18px: no letter-spacing (body + Tailwind size classes) */
-.text-sm,
-.text-base,
-.text-lg {
-  letter-spacing: 0;
-}
-
-/* Geist Mono: exception – retains 1px letter-spacing (overrides above) */
+/* Inter: small UI / former mono labels — 14px tier tracking */
 .font-mono {
-  letter-spacing: 1px !important;
+  font-family: var(--font-mono), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.006em !important;
 }
 
-/* Pulse: solid centre dot + radial wave on ::after (colour via .pulse-green, .pulse-red, etc.) */
-:root {
-  --pulse-color: 22, 163, 74; /* green-600 default */
-}
-.dark {
-  --pulse-color: 74, 222, 128; /* green-400 default */
-}
-
-.pulse {
-  position: relative;
-  display: inline-block;
-  width: 0.375rem;
-  height: 0.375rem;
-  min-width: 0.375rem;
-  min-height: 0.375rem;
-  border-radius: 50%;
-  background-color: rgb(var(--pulse-color));
-  z-index: 1;
-}
-.pulse::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid rgba(var(--pulse-color), 0.6);
-  transform-origin: center;
-  animation: pulse-wave 2s ease-out infinite;
-  z-index: 0;
+/* Full eyebrow spec (see also `text-eyebrow` + utilities below) */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  text-transform: uppercase;
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  font-weight: 600;
+  color: var(--text-tertiary);
 }
 
-/* Status dot: solid dot + radiating wave every few seconds (hero availability) */
-.status-dot-wave {
-  display: block;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-}
-.status-dot-wave::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid rgba(22, 163, 74, 0.6);
-  transform-origin: center;
-  animation: status-dot-wave 3.5s ease-out infinite;
-  pointer-events: none;
-}
-.dark .status-dot-wave::after {
-  border-color: rgba(74, 222, 128, 0.6);
-}
-@keyframes status-dot-wave {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
+@layer utilities {
+  .text-body-base {
+    font-weight: 400;
   }
-  14% {
-    transform: scale(3);
-    opacity: 0;
+  .text-body-lead {
+    font-weight: 400;
   }
-  14.01%,
-  100% {
-    transform: scale(3);
-    opacity: 0;
+  .text-services-row {
+    font-weight: 400;
   }
-}
-
-/* Availability badge: dot matches text (green-800 / green-300) */
-.availability-badge { --pulse-color: 22, 101, 52; }
-.dark .availability-badge { --pulse-color: 134, 239, 172; }
-
-/* Pulse colour overrides (use with .pulse) */
-.pulse-green { --pulse-color: 22, 163, 74; }
-.pulse-red { --pulse-color: 239, 68, 68; }
-.pulse-blue { --pulse-color: 59, 130, 246; }
-.pulse-amber { --pulse-color: 245, 158, 11; }
-.pulse-violet { --pulse-color: 139, 92, 246; }
-
-/* Hero section: staggered reveal animation */
-@keyframes hero-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  /* FAQ answers: 16px / 28px (body-base size + services-row line box) */
+  .text-faq-answer {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-optical-sizing: auto;
+    font-size: var(--text-body-base);
+    line-height: var(--text-services-row--line-height);
+    letter-spacing: var(--text-body-base--letter-spacing);
+    font-weight: 400;
   }
-  to {
+  /* Landing section labels (WORK, FAQS, etc.) — single source; no opacity fade */
+  .text-eyebrow {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-optical-sizing: auto;
+    font-size: var(--text-eyebrow);
+    line-height: var(--text-eyebrow--line-height);
+    letter-spacing: var(--text-eyebrow--letter-spacing);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
     opacity: 1;
-    transform: translateY(0);
   }
-}
-
-.hero-reveal {
-  opacity: 0;
-  animation: hero-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-
-.hero-reveal-delay-1 { animation-delay: 0.1s; }
-.hero-reveal-delay-2 { animation-delay: 0.2s; }
-.hero-reveal-delay-3 { animation-delay: 0.35s; }
-.hero-reveal-delay-4 { animation-delay: 0.5s; }
-.hero-reveal-delay-5 { animation-delay: 0.65s; }
-.hero-reveal-delay-6 { animation-delay: 0.8s; }
-
-/* Infinite ribbon scroll */
-@keyframes ribbon-scroll {
-  from {
-    transform: translateX(0);
+  .text-body-ui {
+    font-weight: 500;
   }
-  to {
-    transform: translateX(-50%);
+  .landing-footer-link {
+    font-size: var(--text-landing-footer-link);
+    line-height: var(--text-landing-footer-link--line-height);
+    letter-spacing: var(--text-landing-footer-link--letter-spacing);
   }
-}
-.ribbon-track {
-  animation: ribbon-scroll 45s linear infinite;
-}
-.ribbon-hover-zone:hover .ribbon-track {
-  animation-play-state: paused;
-}
-
-/* Testimonial carousel progress bar */
-@keyframes testimonial-progress {
-  from {
-    transform: scaleX(0);
+  /* Avoid `max-w-[var(--…)]` / `gap-[var(--…)]` in JSX — Turbopack can emit invalid `width: var(...)` placeholders. */
+  .max-w-landing-testimonial-card {
+    max-width: var(--width-landing-testimonial-card);
   }
-  to {
-    transform: scaleX(1);
+  /* Hero copy measure on the grid (1fr column); caps at Figma width but shrinks with the viewport */
+  .max-w-landing-hero-copy {
+    max-width: min(100%, var(--width-landing-hero-copy-max));
   }
-}
-.testimonial-progress-fill {
-  transform-origin: left;
-  animation: testimonial-progress 9s linear forwards;
-}
-
-/* Services grid: single 1px stroke between tiles (each line drawn once) */
-.services-tile-grid {
-  border: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-}
-.services-tile-grid > * {
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-/* 1-col: no right border (all are last col) */
-.services-tile-grid > * {
-  border-right: none;
-}
-/* 2-col: last column (2n) gets no right border */
-@media (min-width: 640px) {
-  .services-tile-grid > * {
-    border-right: 1px solid var(--border);
+  /* Fixed announcement (var) + main nav (`h-20` = 5rem) */
+  .h-site-header-chrome {
+    height: calc(var(--site-announcement-bar-height) + 5rem);
   }
-  .services-tile-grid > *:nth-child(2n) {
-    border-right: none;
+  .landing-work-carousel-gap {
+    gap: var(--gap-work-carousel);
   }
-}
-/* 3-col: last column (3n) gets no right border */
-@media (min-width: 1024px) {
-  .services-tile-grid > *:nth-child(2n) {
-    border-right: 1px solid var(--border);
+  /* Work carousel slides: never wider than the 1440 shell; `min(100%, …)` keeps mobile at full track width */
+  .landing-work-carousel-slide {
+    box-sizing: border-box;
+    width: min(100%, var(--page-max-width));
+    max-width: var(--page-max-width);
   }
-  .services-tile-grid > *:nth-child(3n) {
-    border-right: none;
-  }
-}
-/* Last row: no bottom border */
-.services-tile-grid > *:last-child {
-  border-bottom: none;
-}
-@media (min-width: 640px) {
-  .services-tile-grid > *:nth-last-child(-n+2) {
-    border-bottom: none;
-  }
-}
-@media (min-width: 1024px) {
-  .services-tile-grid > *:nth-last-child(-n+2) {
-    border-bottom: 1px solid var(--border);
-  }
-  .services-tile-grid > *:nth-last-child(-n+3) {
-    border-bottom: none;
+  .max-w-about-copy-tablet-range {
+    max-width: var(--width-about-copy-max-pct-range);
   }
 }
 
@@ -463,90 +678,193 @@
 html body h1,
 body h1,
 h1 {
-  font-size: 64px !important;
-  line-height: 64px !important;
-  font-weight: 600 !important;
-  letter-spacing: -3.2px !important;
+  font-family: var(--font-heading), "Times New Roman", Times, serif !important;
+  color: var(--text-primary) !important;
+  font-size: var(--text-h1) !important;
+  line-height: var(--text-h1--line-height) !important;
+  letter-spacing: var(--text-h1--letter-spacing) !important;
+  font-weight: 400 !important;
+}
+
+/* Landing hero display: 72px display / regular */
+html body h1.landing-hero-display,
+body h1.landing-hero-display,
+h1.landing-hero-display {
+  font-size: var(--text-landing-hero-display) !important;
+  line-height: var(--text-landing-hero-display--line-height) !important;
+  letter-spacing: var(--text-landing-hero-display--letter-spacing) !important;
+  font-weight: 400 !important;
 }
 html body h2,
 body h2,
 h2 {
-  font-size: 40px !important;
-  line-height: 48px !important;
-  font-weight: 600 !important;
-  letter-spacing: -1.6px !important;
+  font-family: var(--font-heading), "Times New Roman", Times, serif !important;
+  color: var(--text-primary) !important;
+  font-size: var(--text-h2) !important;
+  line-height: var(--text-h2--line-height) !important;
+  letter-spacing: var(--text-h2--letter-spacing) !important;
+  font-weight: 400 !important;
+}
+
+/* Landing section titles: same optical size as H2 */
+html body h2.landing-section-display,
+body h2.landing-section-display,
+h2.landing-section-display {
+  font-size: var(--text-h2) !important;
+  line-height: var(--text-h2--line-height) !important;
+  letter-spacing: var(--text-h2--letter-spacing) !important;
+  font-weight: 400 !important;
 }
 html body h3,
 body h3,
 h3 {
-  font-size: 32px !important;
-  line-height: 40px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.96px !important;
+  font-family: var(--font-heading), "Times New Roman", Times, serif !important;
+  color: var(--text-primary) !important;
+  font-size: var(--text-h3) !important;
+  line-height: var(--text-h3--line-height) !important;
+  letter-spacing: var(--text-h3--letter-spacing) !important;
+  font-weight: 400 !important;
 }
 html body h4,
 body h4,
 h4 {
-  font-size: 24px !important;
-  line-height: 32px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.48px !important;
+  font-family: var(--font-heading), "Times New Roman", Times, serif !important;
+  color: var(--text-primary) !important;
+  font-size: var(--text-h4) !important;
+  line-height: var(--text-h4--line-height) !important;
+  letter-spacing: var(--text-h4--letter-spacing) !important;
+  font-weight: 400 !important;
 }
 html body h5,
 body h5,
 h5 {
-  font-size: 20px !important;
-  line-height: 28px !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.2px !important;
+  font-family: var(--font-heading), "Times New Roman", Times, serif !important;
+  color: var(--text-primary) !important;
+  font-size: var(--text-h5) !important;
+  line-height: var(--text-h5--line-height) !important;
+  letter-spacing: var(--text-h5--letter-spacing) !important;
+  font-weight: 400 !important;
 }
 html body h6,
 body h6,
 h6 {
-  font-weight: 600 !important;
+  font-family: var(--font-heading), "Times New Roman", Times, serif !important;
+  color: var(--text-primary) !important;
+  font-size: var(--text-h6) !important;
+  line-height: var(--text-h6--line-height) !important;
+  letter-spacing: var(--text-h6--letter-spacing) !important;
+  font-weight: 400 !important;
 }
 @media (max-width: 767px) {
   html body h1,
   body h1,
   h1 {
-    font-size: 40px !important;
-    line-height: 44px !important;
-    letter-spacing: -2px !important;
+    font-size: 2.5rem !important;
+    /* Proportional to desktop H1: 76px lh / 64px font */
+    line-height: calc(2.5rem * 76 / 64) !important;
+    letter-spacing: -0.02em !important;
+  }
+  html body h1.landing-hero-display,
+  body h1.landing-hero-display,
+  h1.landing-hero-display {
+    font-size: clamp(2rem, 8.5vw, 2.5rem) !important;
+    /* Proportional to desktop hero: 86px lh / 72px font */
+    line-height: calc(clamp(2rem, 8.5vw, 2.5rem) * 86 / 72) !important;
+    letter-spacing: -0.021em !important;
   }
   html body h2,
   body h2,
   h2 {
-    font-size: 28px !important;
-    line-height: 34px !important;
-    letter-spacing: -1.12px !important;
+    font-size: 2.4375rem !important;
+    /* 68px / 56px × mobile font size */
+    line-height: calc(2.4375rem * 68 / 56) !important;
+    letter-spacing: -0.031em !important;
+  }
+  html body h2.landing-section-display,
+  body h2.landing-section-display,
+  h2.landing-section-display {
+    font-size: 2.0625rem !important;
+    line-height: calc(2.0625rem * 68 / 56) !important;
+    letter-spacing: -0.028em !important;
   }
   html body h3,
   body h3,
   h3 {
-    font-size: 22px !important;
-    line-height: 28px !important;
-    letter-spacing: -0.66px !important;
+    font-size: 1.9375rem !important;
+    /* 60px / 45px × mobile font size (45px = 2.8125rem desktop H3) */
+    line-height: calc(1.9375rem * 60 / 45) !important;
+    letter-spacing: -0.02em !important;
   }
   html body h4,
   body h4,
   h4 {
-    font-size: 18px !important;
-    line-height: 24px !important;
-    letter-spacing: -0.36px !important;
+    font-size: 1.625rem !important;
+    /* 44px / 34px × mobile font size (34px = 2.125rem desktop H4) */
+    line-height: calc(1.625rem * 44 / 34) !important;
+    letter-spacing: -0.012em !important;
   }
   html body h5,
   body h5,
   h5 {
-    font-size: 16px !important;
-    line-height: 22px !important;
-    letter-spacing: -0.16px !important;
+    font-size: 1.375rem !important;
+    /* Same lh/fs ratio as desktop H5 (43px / 28px) */
+    line-height: calc(1.375rem * 43 / 28) !important;
+    letter-spacing: -0.005em !important;
+  }
+  html body h6,
+  body h6,
+  h6 {
+    font-size: 1.125rem !important;
+    /* Same lh/fs ratio as desktop H6 (34px / 22px) */
+    line-height: calc(1.125rem * 34 / 22) !important;
+    letter-spacing: -0.005em !important;
+  }
+
+  /* Match H2/H5 mobile scale when the same sizes are used on non-heading tags (e.g. metrics, cards) */
+  .font-heading.text-h2 {
+    font-size: 2.4375rem !important;
+    line-height: calc(2.4375rem * 68 / 56) !important;
+    letter-spacing: -0.031em !important;
+  }
+  .font-heading.text-h5 {
+    font-size: 1.375rem !important;
+    line-height: calc(1.375rem * 43 / 28) !important;
+    letter-spacing: -0.005em !important;
   }
 }
 
-@media (max-width: 767px) {
-  #hero h1.hero-reveal {
-    font-size: 32px !important;
-    line-height: 38px !important;
-    letter-spacing: -1.6px !important;
+/*
+ * Mobile sheet primary links (Work, Services, …): Tiempos Text.
+ * Scoped to `#mobile-navigation-sheet` so the main nav bar is unaffected.
+ * Placed unlayered after theme utilities so we beat Tailwind’s generated `text-*` rules and body `font-sans`.
+ */
+#mobile-navigation-sheet .mobile-sheet-nav-link {
+  font-family: var(--font-heading), "Times New Roman", Times, serif !important;
+  font-optical-sizing: auto;
+  font-size: var(--mobile-sheet-nav-size);
+  line-height: var(--mobile-sheet-nav-leading);
+  letter-spacing: var(--mobile-sheet-nav-tracking);
+  font-weight: 400;
+}
+
+/* About section — client logos: infinite horizontal strip below `sm` (see `landing-page.tsx`). */
+@keyframes landing-client-logos-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.landing-client-logos-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: landing-client-logos-marquee 45s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-client-logos-marquee-track {
+    animation: none;
   }
 }

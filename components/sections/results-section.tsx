@@ -21,26 +21,31 @@ const METRICS = [
 
 export function ResultsSection() {
   return (
-    <section id="results" className="scroll-mt-14 border-b border-border bg-background">
-      <div className="section-frame px-5 py-5 md:px-20 md:py-20 text-center">
-        <div className="mb-3 flex items-center justify-center gap-2">
-          <Trophy className="size-4 shrink-0 text-muted-foreground" aria-hidden />
-          <span className="font-mono text-sm font-medium uppercase tracking-section-label text-muted-foreground">
-            Results
-          </span>
-        </div>
-        <h2 className="mb-12 text-foreground">
-          Results that speak for themselves.
-        </h2>
+    <section id="results" className="page-section scroll-mt-24 bg-background">
+      <div className="mb-3 flex items-center gap-2">
+        <Trophy className="size-4 shrink-0 text-copy-tertiary" aria-hidden />
+        <span className="font-mono text-sm font-medium uppercase tracking-section-label text-copy-tertiary">
+          Results
+        </span>
+      </div>
+      <h2 className="mb-12 text-copy-primary">Results that speak for themselves.</h2>
 
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {METRICS.map(({ value, description }) => (
-            <div key={value} className="flex flex-col gap-2">
-              <p className="text-[40px] font-semibold leading-[48px] tracking-[-1.6px] text-foreground">{value}</p>
-              <p className="text-sm text-muted-foreground">{description}</p>
-            </div>
-          ))}
-        </div>
+      <div className="grid min-w-0 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        {METRICS.map(({ value, description }) => (
+          <div key={value} className="flex flex-col items-start gap-2 text-left">
+            <p
+              className="font-semibold text-copy-primary"
+              style={{
+                fontSize: "var(--text-metric)",
+                lineHeight: "var(--text-metric--line-height)",
+                letterSpacing: "var(--text-metric--tracking)",
+              }}
+            >
+              {value}
+            </p>
+            <p className="text-sm text-copy-secondary">{description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

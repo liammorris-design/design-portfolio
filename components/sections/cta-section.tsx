@@ -24,21 +24,20 @@ export function CTASection() {
   };
 
   return (
-    <section id="cta" className="scroll-mt-14 border-b border-border-subtle bg-background">
-      <div className="section-frame px-5 py-10 md:px-20 md:py-20">
-        <div className="grid gap-8 md:grid-cols-[1fr_1fr] md:gap-x-20 md:gap-y-[120px]">
+    <section id="cta" className="page-section scroll-mt-24 bg-background">
+      <div className="grid min-w-0 gap-8 md:grid-cols-[1fr_1fr] md:gap-x-20 md:gap-y-[120px]">
           {/* Left: Contact info */}
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-2">
-              <Mail className="size-4 shrink-0 text-zinc-500 dark:text-zinc-400" aria-hidden />
-              <span className="font-mono text-sm uppercase tracking-section-label text-zinc-500 dark:text-zinc-400">
+              <Mail className="size-4 shrink-0 text-copy-tertiary" aria-hidden />
+              <span className="font-mono text-sm uppercase tracking-section-label text-copy-tertiary">
                 Contact
               </span>
             </div>
-            <h2 className="text-foreground">
+            <h2 className="text-copy-primary">
               Got a project you need help on? Let&apos;s talk.
             </h2>
-            <p className="leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <p className="leading-relaxed text-copy-secondary">
               I&apos;m currently available from March 2026 for fully remote
               product design contracts.
             </p>
@@ -75,20 +74,20 @@ export function CTASection() {
           </div>
 
           {/* Right: Enquiry form or confirmation */}
-          <div className="flex w-full flex-col gap-6 overflow-hidden rounded-[var(--radius-card)] border border-zinc-200 bg-white px-6 py-6 text-zinc-900 dark:border-zinc-600/60 dark:bg-zinc-900 dark:text-white md:px-8 md:py-8">
+          <div className="flex w-full flex-col gap-6 overflow-hidden rounded-[var(--radius-card)] border border-border bg-card px-6 py-6 text-copy-primary md:px-8 md:py-8">
             {isSubmitted ? (
               <div className="flex flex-col items-center gap-4 py-8 text-center">
                 <CheckCircle2 className="size-12 text-emerald-600 dark:text-emerald-500" aria-hidden />
-                <h3 className="text-zinc-900 dark:text-white">
+                <h3 className="text-copy-primary">
                   Message sent
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-400">
+                <p className="text-copy-secondary">
                   Thanks for getting in touch. I&apos;ll respond as soon as possible.
                 </p>
               </div>
             ) : (
               <>
-            <h3 className="text-zinc-900 dark:text-white">
+            <h3 className="text-copy-primary">
               Get in touch
             </h3>
             <form
@@ -139,7 +138,6 @@ export function CTASection() {
             )}
           </div>
         </div>
-      </div>
     </section>
   );
 }

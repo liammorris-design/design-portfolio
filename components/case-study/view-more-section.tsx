@@ -34,14 +34,13 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
   };
 
   return (
-    <section className="cs-view-more border-t border-border-subtle">
+    <section className="cs-view-more page-section">
       <PasswordDialog
         open={passwordDialogOpen}
         onOpenChange={setPasswordDialogOpen}
         projectSlug={passwordProjectSlug}
       />
-      <div className="section-frame px-[var(--cs-padding-x)] py-10 md:py-20">
-        <h2 className="cs-view-more-heading text-center">View more projects</h2>
+      <h2 className="cs-view-more-heading text-left">View more projects</h2>
         <div className="cs-view-more-grid">
           {otherProjects.map((proj) => {
             const cardContent = (
@@ -56,7 +55,7 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
                   />
                   <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span
-                      className="flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-medium text-foreground shadow-none"
+                      className="flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-medium text-copy-primary shadow-none"
                       aria-hidden
                     >
                       View project
@@ -65,11 +64,11 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
                   </div>
                 </div>
                 <div className="mt-3 flex flex-col gap-1.5 transition-opacity duration-300 group-hover:opacity-[0.66]">
-                  <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  <span className="font-mono text-xs font-medium uppercase tracking-wider text-copy-tertiary">
                     {proj.company}
                   </span>
-                  <h4 className="font-semibold text-foreground">{proj.title}</h4>
-                  <p className="line-clamp-2 text-sm font-normal leading-relaxed text-muted-foreground">
+                  <h4 className="text-copy-primary">{proj.title}</h4>
+                  <p className="line-clamp-2 text-sm font-normal leading-relaxed text-copy-secondary">
                     {proj.description}
                   </p>
                   {proj.tags.length > 0 && (
@@ -116,7 +115,6 @@ export function ViewMoreSection({ currentSlug }: ViewMoreSectionProps) {
             );
           })}
         </div>
-      </div>
     </section>
   );
 }
